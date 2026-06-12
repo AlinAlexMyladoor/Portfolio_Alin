@@ -3,443 +3,376 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Alin Alex | Backend Engineer</title>
-<meta name="description" content="Portfolio of Alin Alex – CS Engineer, SIH'25 Finalist, Backend Developer"/>
+<title>Alin Alex — Backend & Full-Stack Engineer</title>
+<meta name="description" content="Alin Alex — Backend & Full-Stack Engineer. SIH'25 Finalist. Go, Django, Spring Boot, MERN."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"/>
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<canvas id="bg"></canvas>
-<div id="cursor"></div>
-<div id="cursorRing"></div>
 
-<!-- LOADER -->
+<!-- PRELOADER -->
 <div id="loader">
-  <div class="ld-inner">
-    <div class="ld-name">ALIN ALEX</div>
-    <div class="ld-bar"><div class="ld-prog"></div></div>
-    <div class="ld-status" id="ldStatus">Booting system...</div>
+  <div class="ld-core">
+    <svg class="ld-svg" viewBox="0 0 100 100"><circle class="ld-c1" cx="50" cy="50" r="40"/><circle class="ld-c2" cx="50" cy="50" r="28"/><circle class="ld-c3" cx="50" cy="50" r="16"/></svg>
+    <span class="ld-pct" id="ldPct">0%</span>
   </div>
 </div>
 
+<!-- CANVAS -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- CURSOR -->
+<div id="cur"></div><div id="curRing"></div>
+
 <!-- NAV -->
 <nav id="nav">
-  <a class="nav-brand" href="#hero">AA<span class="dot">.</span></a>
-  <ul class="nav-menu">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certs</a></li>
-    <li><a href="#achievements">Awards</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <a class="logo" href="#hero">A<span class="logo-dot">.</span></a>
+  <ul id="navLinks">
+    <li><a href="#about"><i class="ri-user-line"></i><span>About</span></a></li>
+    <li><a href="#work"><i class="ri-briefcase-line"></i><span>Work</span></a></li>
+    <li><a href="#stack"><i class="ri-code-s-slash-line"></i><span>Stack</span></a></li>
+    <li><a href="#projects"><i class="ri-folder-3-line"></i><span>Projects</span></a></li>
+    <li><a href="#contact"><i class="ri-mail-line"></i><span>Contact</span></a></li>
   </ul>
-  <a href="assets/resume.pdf" download class="nav-resume" id="resumeBtn">↓ Resume</a>
-  <button class="burger" id="burger">☰</button>
+  <a href="assets/resume.pdf" download class="nav-cta"><i class="ri-download-2-line"></i> Resume</a>
+  <button class="burger" id="burger"><i class="ri-menu-3-line"></i></button>
 </nav>
+<div id="mobileMenu">
+  <a href="#about" onclick="closeMobile()"><i class="ri-user-line"></i> About</a>
+  <a href="#work" onclick="closeMobile()"><i class="ri-briefcase-line"></i> Work</a>
+  <a href="#stack" onclick="closeMobile()"><i class="ri-code-s-slash-line"></i> Stack</a>
+  <a href="#projects" onclick="closeMobile()"><i class="ri-folder-3-line"></i> Projects</a>
+  <a href="#contact" onclick="closeMobile()"><i class="ri-mail-line"></i> Contact</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow"><span class="status-dot"></span> Available for opportunities</div>
-    <h1 class="hero-name">ALIN<br/><span class="hero-name-accent">ALEX</span></h1>
-    <div class="hero-role"><span id="typed"></span><span class="blink">_</span></div>
-    <p class="hero-bio">Backend & full-stack CS engineer. SIH'25 Finalist. Building scalable systems with Go, Django & Spring Boot. Christ College of Engineering, Kerala.</p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-main">View Work</a>
-      <a href="#contact" class="btn-ghost">Contact Me</a>
-    </div>
-    <div class="hero-metrics">
-      <div class="metric"><span class="metric-val">9.0</span><span class="metric-key">CGPA</span></div>
-      <div class="metric-sep"></div>
-      <div class="metric"><span class="metric-val">6+</span><span class="metric-key">Projects</span></div>
-      <div class="metric-sep"></div>
-      <div class="metric"><span class="metric-val">3</span><span class="metric-key">Internships</span></div>
-      <div class="metric-sep"></div>
-      <div class="metric"><span class="metric-val">3+</span><span class="metric-key">Awards</span></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-orb-wrap">
-      <div class="orb-outer"></div>
-      <div class="orb-mid"></div>
-      <div class="orb-inner"></div>
-      <div class="photo-frame">
-        <img src="assets/photo.jpg" alt="Alin Alex" class="hero-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-        <div class="photo-fb">AA</div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="pulse-dot"></span><i class="ri-map-pin-line"></i> Thrissur, Kerala · Open to Work</div>
+      <h1 class="hero-name">
+        <span class="hn-line"><span class="hn-word">ALIN</span></span>
+        <span class="hn-line"><span class="hn-word stroke-only">ALEX</span></span>
+      </h1>
+      <div class="hero-typed-wrap"><span class="typed-prefix">&gt;_</span><span id="typed"></span><span class="cursor-blink">|</span></div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary"><i class="ri-eye-line"></i> View Projects</a>
+        <a href="assets/resume.pdf" download class="btn-outline"><i class="ri-download-2-line"></i> Resume</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-n" data-to="6">0</span><span class="hstat-l">Projects</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n" data-to="3">0</span><span class="hstat-l">Internships</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n" data-to="4">0</span><span class="hstat-l">Awards</span></div>
       </div>
     </div>
-    <div class="hero-tag t1">🏆 SIH'25 Finalist</div>
-    <div class="hero-tag t2">⚡ Go · Django · Spring</div>
-    <div class="hero-tag t3">🎓 CGPA 9.0/10</div>
+    <div class="hero-right">
+      <div class="photo-frame" id="photoFrame">
+        <div class="photo-ring r1"></div>
+        <div class="photo-ring r2"></div>
+        <div class="photo-ring r3"></div>
+        <div class="photo-inner">
+          <img src="assets/photo.jpg" alt="Alin Alex" class="hero-photo"/>
+        </div>
+        <div class="photo-glow"></div>
+        <div class="photo-tag pt1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
+        <div class="photo-tag pt2"><i class="ri-trophy-fill"></i> 1st Place</div>
+      </div>
+    </div>
   </div>
-  <div class="scroll-hint"><div class="scroll-line"></div><span>scroll</span></div>
+  <div class="scroll-hint"><i class="ri-arrow-down-line"></i></div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="sec-label">01 — ABOUT</div>
-  <h2 class="sec-title">Who I Am</h2>
+<section id="about" class="section">
+  <div class="sec-label"><i class="ri-user-3-line"></i> 01 — About</div>
   <div class="about-grid">
-    <div class="about-photo-col">
-      <div class="about-photo-wrap">
-        <img src="assets/photo.jpg" alt="Alin Alex" onerror="this.style.display='none'"/>
-        <div class="about-photo-tag">CSE · 2024–2028</div>
+    <div class="about-text reveal">
+      <h2 class="sec-title">Building Systems<br/><span class="grad-text">That Scale.</span></h2>
+      <p>Backend & full-stack engineer crafting production-grade systems — from satellite mining detection to real-time restaurant platforms & concurrent job processors.</p>
+      <div class="about-chips">
+        <span><i class="ri-map-pin-2-fill"></i> Thrissur, Kerala</span>
+        <span><i class="ri-graduation-cap-fill"></i> Christ College of Engineering</span>
+        <span><i class="ri-open-source-fill"></i> FOSS Club</span>
+        <span><i class="ri-global-line"></i> IEEE WIE</span>
+      </div>
+      <div class="about-socials">
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-btn"><i class="ri-github-fill"></i></a>
+        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-btn"><i class="ri-linkedin-box-fill"></i></a>
+        <a href="mailto:alinalex441@gmail.com" class="soc-btn"><i class="ri-mail-fill"></i></a>
       </div>
     </div>
-    <div class="about-text-col">
-      <p class="about-bio">Second-year Computer Science student building real-world backend systems — from satellite-based mining detection to real-time restaurant platforms. I think in systems, ship in iterations, and debug with precision.</p>
-      <p class="about-bio">SIH'25 national finalist. Active in FOSS Club & IEEE WIE. Passionate about concurrency, distributed systems, and open-source technology.</p>
-      <div class="about-info">
-        <div class="info-row"><span class="info-key">Location</span><span class="info-val">Thrissur, Kerala, India</span></div>
-        <div class="info-row"><span class="info-key">Email</span><a href="mailto:alinalex441@gmail.com" class="info-val link">alinalex441@gmail.com</a></div>
-        <div class="info-row"><span class="info-key">Phone</span><span class="info-val">+91 8921363027</span></div>
-        <div class="info-row"><span class="info-key">College</span><span class="info-val">Christ College of Engineering</span></div>
-        <div class="info-row"><span class="info-key">GitHub</span><a href="https://github.com/AlinAlexMyladoor" target="_blank" class="info-val link">AlinAlexMyladoor</a></div>
-        <div class="info-row"><span class="info-key">LinkedIn</span><a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="info-val link">alin-alex-00a017332</a></div>
+    <div class="about-awards reveal" style="--d:.15s">
+      <div class="award-card ac1">
+        <div class="aw-icon"><i class="ri-trophy-fill"></i></div>
+        <div class="aw-info"><strong>SIH'25</strong><span>National Finalist</span></div>
       </div>
-      <a href="assets/resume.pdf" download class="btn-main" style="margin-top:2rem;display:inline-flex;gap:.5rem;align-items:center">↓ Download Resume</a>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="sec-label">02 — SKILLS</div>
-  <h2 class="sec-title">Tech Stack</h2>
-  <div class="skills-grid">
-    <div class="skill-block">
-      <div class="skill-block-title">Languages</div>
-      <div class="skill-pills">
-        <span>Python</span><span>JavaScript</span><span>Java</span><span>Go</span><span>C</span>
+      <div class="award-card ac2">
+        <div class="aw-icon"><i class="ri-medal-fill"></i></div>
+        <div class="aw-info"><strong>1st Place</strong><span>Idea Pitching</span></div>
+      </div>
+      <div class="award-card ac3">
+        <div class="aw-icon"><i class="ri-award-fill"></i></div>
+        <div class="aw-info"><strong>2nd Place</strong><span>Synovate 2025</span></div>
+      </div>
+      <div class="award-card ac4">
+        <div class="aw-icon"><i class="ri-lightbulb-flash-fill"></i></div>
+        <div class="aw-info"><strong>2nd Place</strong><span>Sustainable Dev</span></div>
       </div>
     </div>
-    <div class="skill-block">
-      <div class="skill-block-title">Backend</div>
-      <div class="skill-pills">
-        <span>Django</span><span>Spring Boot</span><span>Node.js</span><span>Express.js</span><span>REST APIs</span><span>WebSockets</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-title">Frontend</div>
-      <div class="skill-pills">
-        <span>React.js</span><span>HTML5</span><span>CSS3</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-title">Databases</div>
-      <div class="skill-pills">
-        <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-title">DevOps & Cloud</div>
-      <div class="skill-pills">
-        <span>Docker</span><span>Git</span><span>CI/CD</span><span>AWS EC2</span><span>Render</span>
-      </div>
-    </div>
-    <div class="skill-block">
-      <div class="skill-block-title">Concepts</div>
-      <div class="skill-pills">
-        <span>Concurrency</span><span>Microservices</span><span>System Design</span><span>Agile</span>
-      </div>
-    </div>
-  </div>
-  <div class="skill-bars">
-    <div class="sbar"><div class="sbar-meta"><span>Python / Django</span><span class="sbar-pct">88%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="88"></div></div></div>
-    <div class="sbar"><div class="sbar-meta"><span>Java / Spring Boot</span><span class="sbar-pct">82%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="82"></div></div></div>
-    <div class="sbar"><div class="sbar-meta"><span>Go (Backend)</span><span class="sbar-pct">75%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="75"></div></div></div>
-    <div class="sbar"><div class="sbar-meta"><span>JavaScript / React</span><span class="sbar-pct">80%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="80"></div></div></div>
-    <div class="sbar"><div class="sbar-meta"><span>Databases</span><span class="sbar-pct">85%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="85"></div></div></div>
-    <div class="sbar"><div class="sbar-meta"><span>Docker / DevOps</span><span class="sbar-pct">78%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="78"></div></div></div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
-  <div class="sec-label">03 — EXPERIENCE</div>
-  <h2 class="sec-title">Work History</h2>
-  <div class="exp-list">
-
-    <div class="exp-card reveal">
-      <div class="exp-left">
-        <div class="exp-company">AetherHub</div>
-        <div class="exp-date">May 2025 – Present</div>
-        <div class="exp-badge current">Current</div>
+<section id="work" class="section">
+  <div class="sec-label"><i class="ri-briefcase-3-line"></i> 02 — Experience</div>
+  <h2 class="sec-title reveal">Where I've <span class="grad-text">Worked.</span></h2>
+  <div class="exp-timeline">
+    <div class="exp-card reveal" style="--d:.05s">
+      <div class="exp-header">
+        <div class="exp-logo" style="--g:linear-gradient(135deg,#6366f1,#a855f7)"><i class="ri-code-box-fill"></i></div>
+        <div class="exp-meta">
+          <h3>White Matrix</h3>
+          <span class="exp-role"><i class="ri-terminal-box-line"></i> Jr. Software Engineering Intern</span>
+          <span class="exp-date"><i class="ri-calendar-line"></i> Feb 2026 — Present</span>
+        </div>
+        <span class="exp-badge live"><i class="ri-radio-button-fill"></i> Current</span>
       </div>
-      <div class="exp-right">
-        <div class="exp-role">AI Research & Development Intern</div>
-        <ul class="exp-bullets">
-          <li>Working on AI/ML research and development projects involving intelligent systems and data-driven solutions.</li>
-          <li>Contributing to building and experimenting with AI-powered architectures and pipelines.</li>
-          <li>Applying research insights to practical development tasks in a fast-paced R&D environment.</li>
-        </ul>
-        <div class="exp-tags"><span>AI/ML</span><span>Research</span><span>Python</span></div>
+      <div class="exp-body">
+        <div class="exp-metric"><strong>40%</strong><span>faster query gen</span></div>
+        <div class="exp-metric"><strong>85%</strong><span>less hallucination</span></div>
+        <div class="exp-metric"><strong>30%</strong><span>faster onboarding</span></div>
+      </div>
+      <div class="exp-tags"><span>Python</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div>
+    </div>
+    <div class="exp-card reveal" style="--d:.1s">
+      <div class="exp-header">
+        <div class="exp-logo" style="--g:linear-gradient(135deg,#06b6d4,#22d3ee)"><i class="ri-brain-fill"></i></div>
+        <div class="exp-meta">
+          <h3>AetherHub</h3>
+          <span class="exp-role"><i class="ri-robot-line"></i> AI R&D Intern</span>
+          <span class="exp-date"><i class="ri-calendar-line"></i> May 2025 — Present</span>
+        </div>
+        <span class="exp-badge live"><i class="ri-radio-button-fill"></i> Current</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-metric full"><span>AI/ML research — intelligent systems & data pipelines</span></div>
+      </div>
+      <div class="exp-tags"><span>AI/ML</span><span>Python</span><span>Research</span></div>
+    </div>
+    <div class="exp-card reveal" style="--d:.15s">
+      <div class="exp-header">
+        <div class="exp-logo" style="--g:linear-gradient(135deg,#f59e0b,#fbbf24)"><i class="ri-shopping-cart-fill"></i></div>
+        <div class="exp-meta">
+          <h3>Ziuke Infotech</h3>
+          <span class="exp-role"><i class="ri-stack-line"></i> Full Stack Developer Intern</span>
+          <span class="exp-date"><i class="ri-calendar-line"></i> Jun — Jul 2025</span>
+        </div>
+        <span class="exp-badge done"><i class="ri-check-line"></i> Completed</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-metric"><strong>500+</strong><span>products</span></div>
+        <div class="exp-metric"><strong>30%</strong><span>query boost</span></div>
+        <div class="exp-metric"><strong>95%</strong><span>error reduction</span></div>
+      </div>
+      <div class="exp-tags"><span>Django</span><span>MySQL</span><span>JavaScript</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack" class="section">
+  <div class="sec-label"><i class="ri-cpu-line"></i> 03 — Tech Stack</div>
+  <h2 class="sec-title reveal">Tools of the <span class="grad-text">Trade.</span></h2>
+  <div class="stack-grid reveal" style="--d:.1s">
+    <div class="stack-group">
+      <div class="sg-label"><i class="ri-code-line"></i> Languages</div>
+      <div class="sg-items">
+        <div class="tech-pill" data-tip="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>Python</div>
+        <div class="tech-pill" data-tip="Go"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" alt="Go"/>Go</div>
+        <div class="tech-pill" data-tip="Java"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>Java</div>
+        <div class="tech-pill" data-tip="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/>JavaScript</div>
       </div>
     </div>
-
-    <div class="exp-card reveal">
-      <div class="exp-left">
-        <div class="exp-company">White Matrix</div>
-        <div class="exp-date">Feb 2026 – Present</div>
-        <div class="exp-badge current">Current</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Junior Software Engineering Intern</div>
-        <ul class="exp-bullets">
-          <li>Spearheaded documentation & architectural blueprints for an AI-powered SQL engine (NLIDB), accelerating team onboarding by <strong>30%</strong>.</li>
-          <li>Defined backend pipeline across Librarian, Specialist & Executor layers with dynamic schema injection — <strong>40% faster</strong> SQL generation.</li>
-          <li>Documented secure, read-only database execution (SQLAlchemy/PostgreSQL) reducing hallucination risks by <strong>85%</strong>.</li>
-        </ul>
-        <div class="exp-tags"><span>Python</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div>
+    <div class="stack-group">
+      <div class="sg-label"><i class="ri-server-line"></i> Frameworks</div>
+      <div class="sg-items">
+        <div class="tech-pill" data-tip="Django"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"/>Django</div>
+        <div class="tech-pill" data-tip="Spring Boot"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"/>Spring Boot</div>
+        <div class="tech-pill" data-tip="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/>React</div>
+        <div class="tech-pill" data-tip="Node.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node"/>Node.js</div>
       </div>
     </div>
-
-    <div class="exp-card reveal">
-      <div class="exp-left">
-        <div class="exp-company">Ziuke Infotech</div>
-        <div class="exp-date">Jun 2025 – Jul 2025</div>
-        <div class="exp-badge">Completed</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Full Stack Developer Intern</div>
-        <ul class="exp-bullets">
-          <li>Built <strong>Cart Shopee</strong> — e-commerce platform handling 500+ products, improving DB query efficiency by <strong>30%</strong> via Django ORM.</li>
-          <li>Engineered real-time cart sync reducing order processing errors by <strong>95%</strong> with 100% transaction accuracy.</li>
-        </ul>
-        <div class="exp-tags"><span>Django</span><span>MySQL</span><span>JavaScript</span></div>
+    <div class="stack-group">
+      <div class="sg-label"><i class="ri-database-line"></i> Data & Cloud</div>
+      <div class="sg-items">
+        <div class="tech-pill" data-tip="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PG"/>PostgreSQL</div>
+        <div class="tech-pill" data-tip="MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="Mongo"/>MongoDB</div>
+        <div class="tech-pill" data-tip="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>Docker</div>
+        <div class="tech-pill" data-tip="AWS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"/>AWS</div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <div class="sec-label">04 — PROJECTS</div>
-  <h2 class="sec-title">Featured Work</h2>
+<section id="projects" class="section">
+  <div class="sec-label"><i class="ri-folder-3-line"></i> 04 — Projects</div>
+  <h2 class="sec-title reveal">What I've <span class="grad-text">Built.</span></h2>
   <div class="proj-grid">
-
-    <div class="proj-card featured reveal">
-      <div class="proj-num">01</div>
-      <div class="proj-top">
-        <div>
-          <div class="proj-badge-label">⭐ Featured · SIH'25</div>
-          <h3 class="proj-name">MineGuard</h3>
-          <div class="proj-sub">Satellite-Based Illegal Mining Detection</div>
-        </div>
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-ext">↗</a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card featured reveal">
+      <div class="pc-img"><img src="assets/proj_mineguard.png" alt="MineGuard"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge">SIH'25</span><span class="pc-idx">01</span></div>
+        <h3>MineGuard</h3>
+        <p>Satellite mining detection — <strong>90% false positive reduction</strong></p>
+        <div class="pc-tags"><span>Python</span><span>Sentinel</span><span>Plotly</span></div>
       </div>
-      <p class="proj-desc">Engineered a satellite analysis system using Sentinel-1/2 data with a Triple-Lock Verification Model combining NDVI/NDBI spectral analysis, DEM topographic validation, and GeoJSON geo-fencing. Reduced false positives by <strong>90%</strong>. Built 3D forensic visualization with Plotly.</p>
-      <div class="proj-stack"><span>Python</span><span>Satellite APIs</span><span>Plotly</span><span>GeoJSON</span><span>3D Viz</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">02</div>
-      <div class="proj-top">
-        <div>
-          <h3 class="proj-name">Concurrent Job Processor</h3>
-          <div class="proj-sub">Go Architecture</div>
-        </div>
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-ext">↗</a>
+    </a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card reveal" style="--d:.05s">
+      <div class="pc-img"><img src="assets/proj_jobs.png" alt="Job Processor"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge go">Go</span><span class="pc-idx">02</span></div>
+        <h3>Concurrent Job Processor</h3>
+        <p><strong>5000+ jobs/min</strong> — goroutine architecture</p>
+        <div class="pc-tags"><span>Go</span><span>Goroutines</span><span>Channels</span></div>
       </div>
-      <p class="proj-desc">Asynchronous backend using Goroutines, channels & worker pools. Fault-tolerant with exponential backoff + jitter. Context cancellation for graceful shutdown. Handles 5000+ jobs/min.</p>
-      <div class="proj-stack"><span>Go</span><span>Goroutines</span><span>Concurrency</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">03</div>
-      <div class="proj-top">
-        <div>
-          <h3 class="proj-name">FoodHub</h3>
-          <div class="proj-sub">Real-Time Restaurant Management</div>
-        </div>
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-ext">↗</a>
+    </a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card reveal" style="--d:.1s">
+      <div class="pc-img"><img src="assets/proj_foodhub.png" alt="FoodHub"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge spring">Spring</span><span class="pc-idx">03</span></div>
+        <h3>FoodHub</h3>
+        <p>Real-time restaurant platform — <strong>ms-latency sync</strong></p>
+        <div class="pc-tags"><span>Spring Boot</span><span>WebSockets</span></div>
       </div>
-      <p class="proj-desc">Real-time order state management using Spring WebSockets (STOMP) for millisecond-latency sync. Role-based message routing, robust relational schema with join tables for historical pricing.</p>
-      <div class="proj-stack"><span>Java</span><span>Spring Boot</span><span>WebSockets</span><span>STOMP</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">04</div>
-      <div class="proj-top">
-        <div>
-          <h3 class="proj-name">E-Ballot</h3>
-          <div class="proj-sub">Secure Online Voting Platform</div>
-        </div>
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-ext">↗</a>
+    </a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card reveal" style="--d:.15s">
+      <div class="pc-img"><img src="assets/proj_eballot.png" alt="E-Ballot"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge mern">MERN</span><span class="pc-idx">04</span></div>
+        <h3>E-Ballot</h3>
+        <p>Secure voting platform — <strong>zero double-votes</strong></p>
+        <div class="pc-tags"><span>MongoDB</span><span>React</span><span>Node</span></div>
       </div>
-      <p class="proj-desc">Defense-in-depth security with bcrypt hashing + JWT via httpOnly cookies. Unique Indexing prevents double-voting. Full MERN stack implementation.</p>
-      <div class="proj-stack"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">05</div>
-      <div class="proj-top">
-        <div>
-          <h3 class="proj-name">Cart Shopee</h3>
-          <div class="proj-sub">E-Commerce Web Application</div>
-        </div>
+    </a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card sm reveal" style="--d:.2s">
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge django">Django</span><span class="pc-idx">05</span></div>
+        <h3>Cart Shopee</h3>
+        <p>E-Commerce — <strong>500+ products</strong></p>
+        <div class="pc-tags"><span>Django</span><span>MySQL</span></div>
       </div>
-      <p class="proj-desc">Full-featured e-commerce with Django ORM (30% query efficiency gain), real-time cart sync, auth, product catalog & order management. 500+ products, 95% error reduction.</p>
-      <div class="proj-stack"><span>Python</span><span>Django</span><span>MySQL</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">06</div>
-      <div class="proj-top">
-        <div>
-          <h3 class="proj-name">Go E-Commerce Backend</h3>
-          <div class="proj-sub">Scalable RESTful Architecture</div>
-        </div>
+    </a>
+    <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card sm reveal" style="--d:.25s">
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge go">Go</span><span class="pc-idx">06</span></div>
+        <h3>Go E-Commerce API</h3>
+        <p>Scalable REST — concurrent transactions</p>
+        <div class="pc-tags"><span>Go</span><span>REST</span><span>PostgreSQL</span></div>
       </div>
-      <p class="proj-desc">Backend service with transactions, concurrency, and reliable request handling. Designed RESTful APIs with efficient processing for scalable e-commerce operations.</p>
-      <div class="proj-stack"><span>Go</span><span>REST APIs</span><span>Concurrency</span></div>
-    </div>
-
+    </a>
   </div>
 </section>
 
 <!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="sec-label">05 — CERTIFICATIONS</div>
-  <h2 class="sec-title">Credentials</h2>
-  <p class="cert-intro">Verified certifications and completed courses. Click any card to add your certificate image.</p>
+<section id="certs" class="section">
+  <div class="sec-label"><i class="ri-medal-line"></i> 05 — Credentials</div>
+  <h2 class="sec-title reveal">Certified <span class="grad-text">Skills.</span></h2>
   <div class="cert-grid">
-
-    <div class="cert-card reveal" onclick="openCertModal('Responsive Web Design','freeCodeCamp','300 Hours')">
-      <div class="cert-org-badge">freeCodeCamp</div>
-      <div class="cert-title-text">Responsive Web Design</div>
-      <div class="cert-meta">300 Hours · Verified</div>
-      <div class="cert-proof-area" id="cert-1">
-        <div class="cert-proof-placeholder">📎 Click to view / add proof</div>
-      </div>
-      <div class="cert-status verified">✓ Certified</div>
+    <div class="cert-card reveal">
+      <div class="cert-icon" style="--ci:#06b6d4"><i class="ri-code-s-slash-fill"></i></div>
+      <div class="cert-info"><strong>Responsive Web Design</strong><span>freeCodeCamp · 300hrs</span></div>
     </div>
-
-    <div class="cert-card reveal" onclick="openCertModal('Python for Data Science','NPTEL · IIT Madras','')">
-      <div class="cert-org-badge">NPTEL · IIT Madras</div>
-      <div class="cert-title-text">Python for Data Science</div>
-      <div class="cert-meta">IIT Madras · Verified</div>
-      <div class="cert-proof-area" id="cert-2">
-        <div class="cert-proof-placeholder">📎 Click to view / add proof</div>
-      </div>
-      <div class="cert-status verified">✓ Certified</div>
+    <div class="cert-card reveal" style="--d:.08s">
+      <div class="cert-icon" style="--ci:#a855f7"><i class="ri-flask-fill"></i></div>
+      <div class="cert-info"><strong>Python for Data Science</strong><span>NPTEL · IIT Madras</span></div>
     </div>
-
-    <div class="cert-card reveal" onclick="openCertModal('Digital 101','NASSCOM','')">
-      <div class="cert-org-badge">NASSCOM</div>
-      <div class="cert-title-text">Digital 101 Certification</div>
-      <div class="cert-meta">IT-ITeS Sector Skills Council</div>
-      <div class="cert-proof-area" id="cert-3">
-        <div class="cert-proof-placeholder">📎 Click to view / add proof</div>
-      </div>
-      <div class="cert-status verified">✓ Certified</div>
+    <div class="cert-card reveal" style="--d:.16s">
+      <div class="cert-icon" style="--ci:#ec4899"><i class="ri-global-fill"></i></div>
+      <div class="cert-info"><strong>Digital 101</strong><span>NASSCOM</span></div>
     </div>
-
-    <div class="cert-card reveal" onclick="openCertModal('Java Spring Boot Training','Neu iPlus Education','')">
-      <div class="cert-org-badge">Neu iPlus Education</div>
-      <div class="cert-title-text">Java Spring Boot Training</div>
-      <div class="cert-meta">Professional Training</div>
-      <div class="cert-proof-area" id="cert-4">
-        <div class="cert-proof-placeholder">📎 Click to view / add proof</div>
-      </div>
-      <div class="cert-status verified">✓ Certified</div>
+    <div class="cert-card reveal" style="--d:.24s">
+      <div class="cert-icon" style="--ci:#22c55e"><i class="ri-leaf-fill"></i></div>
+      <div class="cert-info"><strong>Java Spring Boot</strong><span>Neu iPlus Education</span></div>
     </div>
-
-    <!-- Add more cert card -->
-    <div class="cert-card cert-add reveal" id="addCertCard">
-      <div class="cert-add-icon">+</div>
-      <div class="cert-add-label">Add Certification</div>
-      <input type="file" id="certUpload" accept="image/*,.pdf" style="display:none"/>
-    </div>
-
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
-  <div class="sec-label">06 — ACHIEVEMENTS</div>
-  <h2 class="sec-title">Awards & Events</h2>
-  <div class="ach-grid">
-    <div class="ach-card gold reveal"><div class="ach-ico">🏆</div><h3>SIH'25 Finalist</h3><p>Smart India Hackathon — National finale at IIML Noida</p></div>
-    <div class="ach-card gold reveal"><div class="ach-ico">🥇</div><h3>1st Prize — Idea Pitching</h3><p>Technology-driven startup idea — first among competing teams</p></div>
-    <div class="ach-card silver reveal"><div class="ach-ico">🥈</div><h3>2nd Prize — Synovate 2025</h3><p>Ideathon — innovative technical solutions</p></div>
-    <div class="ach-card silver reveal"><div class="ach-ico">🥈</div><h3>2nd Prize — Sustainable Dev.</h3><p>Sustainable technology presentation competition</p></div>
-    <div class="ach-card reveal"><div class="ach-ico">⛱️</div><h3>HackForChrist</h3><p>South India's 24-Hour Beach Hackathon</p></div>
-    <div class="ach-card reveal"><div class="ach-ico">🎓</div><h3>IEEE YESS'25 — NIT Calicut</h3><p>Engineering Students Summit</p></div>
-    <div class="ach-card reveal"><div class="ach-ico">🚀</div><h3>NODE 2025 — Kerala Startup Mission</h3><p>Tech networking — developers & innovators</p></div>
-    <div class="ach-card reveal"><div class="ach-ico">🐧</div><h3>Installation Fest — ICFOSS</h3><p>Open-source community technology discussions</p></div>
-  </div>
-  <div class="lead-section">
-    <h3 class="lead-title">Leadership & Community</h3>
-    <div class="lead-grid">
-      <div class="lead-item reveal"><span class="lead-role">Event Coordinator</span><span class="lead-org">FOSS Club CCE</span></div>
-      <div class="lead-item reveal"><span class="lead-role">Documentation Lead</span><span class="lead-org">IEEE WIE CCE</span></div>
-      <div class="lead-item reveal"><span class="lead-role">Industrial Visit Coordinator</span><span class="lead-org">TCS Kochi</span></div>
-      <div class="lead-item reveal"><span class="lead-role">Publicity Lead</span><span class="lead-org">Beach Hack Season 7</span></div>
-      <div class="lead-item reveal"><span class="lead-role">Event Coordinator</span><span class="lead-org">Christovate (Techletics 4.0)</span></div>
-      <div class="lead-item reveal"><span class="lead-role">SDGP Project Coordinator</span><span class="lead-org">College</span></div>
-    </div>
+<!-- LEADERSHIP -->
+<section id="lead" class="section">
+  <div class="sec-label"><i class="ri-group-line"></i> 06 — Leadership</div>
+  <h2 class="sec-title reveal">Beyond <span class="grad-text">Code.</span></h2>
+  <div class="lead-marquee"><div class="lm-track">
+    <span><i class="ri-star-fill"></i> Event Coordinator — FOSS Club</span>
+    <span><i class="ri-file-text-fill"></i> Documentation Lead — IEEE WIE</span>
+    <span><i class="ri-building-fill"></i> IV Coordinator — TCS Kochi</span>
+    <span><i class="ri-megaphone-fill"></i> Publicity Lead — Beach Hack 7</span>
+    <span><i class="ri-calendar-event-fill"></i> Event Coordinator — Christovate</span>
+    <span><i class="ri-earth-fill"></i> SDGP Coordinator</span>
+    <span><i class="ri-star-fill"></i> Event Coordinator — FOSS Club</span>
+    <span><i class="ri-file-text-fill"></i> Documentation Lead — IEEE WIE</span>
+    <span><i class="ri-building-fill"></i> IV Coordinator — TCS Kochi</span>
+    <span><i class="ri-megaphone-fill"></i> Publicity Lead — Beach Hack 7</span>
+    <span><i class="ri-calendar-event-fill"></i> Event Coordinator — Christovate</span>
+    <span><i class="ri-earth-fill"></i> SDGP Coordinator</span>
+  </div></div>
+  <div class="event-pills reveal">
+    <span class="epill"><i class="ri-fire-fill"></i> HackForChrist</span>
+    <span class="epill"><i class="ri-graduation-cap-fill"></i> IEEE YESS'25 — NIT Calicut</span>
+    <span class="epill"><i class="ri-rocket-fill"></i> NODE 2025 — Kerala Startup</span>
+    <span class="epill"><i class="ri-open-source-fill"></i> ICFOSS Fest</span>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="sec-label">07 — CONTACT</div>
-  <h2 class="sec-title">Let's Connect</h2>
-  <div class="contact-grid">
+<section id="contact" class="section">
+  <div class="sec-label"><i class="ri-mail-line"></i> 07 — Contact</div>
+  <div class="contact-wrap">
     <div class="contact-left reveal">
-      <p class="contact-tagline">Open to internships, backend engineering roles, and open-source collaboration.</p>
+      <h2 class="sec-title">Let's <span class="grad-text">Connect.</span></h2>
+      <p>Open to full-time roles, internships, and interesting collaborations.</p>
       <div class="contact-links">
-        <a href="mailto:alinalex441@gmail.com" class="clink"><span>✉</span><span>alinalex441@gmail.com</span></a>
-        <a href="tel:+918921363027" class="clink"><span>📞</span><span>+91 8921363027</span></a>
-        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="clink"><span>💼</span><span>LinkedIn Profile</span></a>
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="clink"><span>🐙</span><span>GitHub Profile</span></a>
+        <a href="mailto:alinalex441@gmail.com" class="clink"><i class="ri-mail-fill"></i><span>alinalex441@gmail.com</span></a>
+        <a href="tel:+918921363027" class="clink"><i class="ri-phone-fill"></i><span>+91 8921363027</span></a>
+      </div>
+      <div class="contact-socials">
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-btn lg"><i class="ri-github-fill"></i></a>
+        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-btn lg"><i class="ri-linkedin-box-fill"></i></a>
       </div>
     </div>
-    <form class="contact-form reveal" id="cForm">
-      <div class="frow">
-        <div class="fgroup"><label>Name</label><input type="text" placeholder="Your Name" required/></div>
-        <div class="fgroup"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+    <form id="cForm" class="contact-form reveal" style="--d:.12s">
+      <div class="cf-field">
+        <i class="ri-user-line"></i>
+        <input type="text" placeholder="Your Name" required/>
       </div>
-      <div class="fgroup"><label>Subject</label><input type="text" placeholder="Subject"/></div>
-      <div class="fgroup"><label>Message</label><textarea rows="5" placeholder="Tell me about your opportunity..."></textarea></div>
-      <button type="submit" class="btn-main" id="fBtn">Send Message →</button>
+      <div class="cf-field">
+        <i class="ri-mail-line"></i>
+        <input type="email" placeholder="Email Address" required/>
+      </div>
+      <div class="cf-field ta">
+        <i class="ri-message-3-line"></i>
+        <textarea rows="4" placeholder="Your Message..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary full" id="fBtn"><i class="ri-send-plane-fill"></i> Send Message</button>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">AA<span class="dot">.</span></div>
-    <p>Alin Alex · Backend & Software Engineer · Thrissur, Kerala</p>
-    <div class="footer-socials">
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank">LinkedIn</a>
-      <a href="mailto:alinalex441@gmail.com">Email</a>
+  <div class="f-inner">
+    <span class="f-brand">A<span class="logo-dot">.</span></span>
+    <span class="f-copy"><i class="ri-copyright-line"></i> 2026 Alin Alex · Kerala, India</span>
+    <div class="f-links">
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank"><i class="ri-github-fill"></i></a>
+      <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
     </div>
-    <p class="footer-copy">© 2025 Alin Alex. Crafted with precision from Kerala 🌴</p>
   </div>
 </footer>
-
-<!-- CERT MODAL -->
-<div id="certModal" class="modal-overlay" onclick="closeCertModal(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeCertModal()">✕</button>
-    <h3 id="modalTitle"></h3>
-    <p id="modalOrg" class="modal-org"></p>
-    <div class="modal-proof-area" id="modalProof">
-      <div class="modal-placeholder">Upload your certificate here</div>
-      <label class="modal-upload-btn">
-        📎 Upload Certificate
-        <input type="file" accept="image/*,.pdf" onchange="handleCertUpload(event)"/>
-      </label>
-    </div>
-  </div>
-</div>
 
 <script src="script.js"></script>
 </body>
