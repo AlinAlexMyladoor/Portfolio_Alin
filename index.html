@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"/>
 <link rel="stylesheet" href="style.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body>
 
@@ -92,43 +93,63 @@
 
 <!-- HERO SECTION -->
 <section id="hero">
-  <canvas id="heroCanvas"></canvas>
+  <!-- Three.js 3D scene fills the whole hero -->
+  <canvas id="heroCanvas3D"></canvas>
+  <!-- particle network canvas underneath 3D -->
+  <canvas id="heroCanvas" style="display:none"></canvas>
+
   <div class="hero-inner section-container">
-    <div class="hero-top">
+    <!-- LEFT: name & info -->
+    <div class="hero-left">
       <div class="hero-eyebrow">
         <span class="hero-status"><span class="status-dot"></span>Open to Work</span>
         <span class="hero-loc"><i class="ri-map-pin-line"></i> Thrissur, Kerala</span>
       </div>
-    </div>
-    <div class="hero-name-wrap">
-      <div class="hero-name-line split-line">
-        <span class="name-word">ALIN</span>
+      <div class="hero-greeting">Hello! I'm</div>
+      <div class="hero-name-wrap">
+        <div class="hero-name-line split-line"><span class="name-word">ALIN</span></div>
+        <div class="hero-name-line split-line"><span class="name-word stroke">ALEX</span></div>
       </div>
-      <div class="hero-name-line split-line">
-        <span class="name-word stroke">ALEX</span>
+      <div class="hero-sub">
+        <span class="typed-prefix">An </span>
+        <span id="typedText"></span><span class="type-cursor">|</span>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hstat"><span class="hstat-num" data-to="6">0</span><span class="hstat-plus">+</span><span class="hstat-label">Projects</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-num" data-to="3">0</span><span class="hstat-plus">+</span><span class="hstat-label">Internships</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-num" data-to="4">0</span><span class="hstat-plus">+</span><span class="hstat-label">Awards</span></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#works" class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
+        <a href="assets/resume.pdf" download class="btn-outline">Resume <i class="ri-download-2-line"></i></a>
       </div>
     </div>
-    <div class="hero-sub">
-      <span class="typed-prefix">&gt;_</span>
-      <span id="typedText"></span><span class="type-cursor">|</span>
+
+    <!-- CENTER: 3D model placeholder (Three.js renders here via canvas) -->
+    <div class="hero-3d-wrap" id="hero3dWrap">
+      <div class="hero-3d-glow"></div>
+      <div class="photo-tag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
+      <div class="photo-tag tag2"><i class="ri-trophy-fill"></i> 1st Place</div>
     </div>
-    <div class="hero-stats-row">
-      <div class="hstat"><span class="hstat-num" data-to="6">0</span><span class="hstat-plus">+</span><span class="hstat-label">Projects</span></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><span class="hstat-num" data-to="3">0</span><span class="hstat-plus">+</span><span class="hstat-label">Internships</span></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><span class="hstat-num" data-to="4">0</span><span class="hstat-plus">+</span><span class="hstat-label">Awards</span></div>
-    </div>
-    <div class="hero-cta">
-      <a href="#works" class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
-      <a href="assets/resume.pdf" download class="btn-outline">Resume <i class="ri-download-2-line"></i></a>
-    </div>
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-frame">
-        <img src="assets/photo.jpg" alt="Alin Alex" class="hero-photo"/>
-        <div class="photo-glow"></div>
-        <div class="photo-tag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
-        <div class="photo-tag tag2"><i class="ri-trophy-fill"></i> 1st Place</div>
+
+    <!-- RIGHT: scrolling role text -->
+    <div class="hero-right">
+      <div class="hero-role-label">An</div>
+      <div class="hero-role-scroll">
+        <div class="hero-role-track" id="heroRoleTrack">
+          <span>AI ENGINEER</span>
+          <span>FULL-STACK DEV</span>
+          <span>BACKEND ENG</span>
+          <span>AI ENGINEER</span>
+          <span>FULL-STACK DEV</span>
+        </div>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-link"><i class="ri-github-fill"></i></a>
+        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link"><i class="ri-linkedin-box-fill"></i></a>
+        <a href="mailto:alinalex441@gmail.com" class="soc-link"><i class="ri-mail-fill"></i></a>
       </div>
     </div>
   </div>
@@ -463,5 +484,6 @@
 </div><!-- /mainBody -->
 
 <script src="script.js"></script>
+<script src="three3d.js"></script>
 </body>
 </html>
