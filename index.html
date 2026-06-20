@@ -6,24 +6,23 @@
 <title>Alin Alex — Backend & Full-Stack Engineer</title>
 <meta name="description" content="Alin Alex — Backend & Full-Stack Engineer. SIH'25 Finalist. Go, Django, Spring Boot, MERN."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"/>
 <link rel="stylesheet" href="style.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body>
 
-<!-- CUSTOM CURSOR -->
+<!-- CURSOR -->
 <div id="cursor" class="cursor"></div>
 <div id="cursorDot" class="cursor-dot"></div>
 
 <!-- SCROLL PROGRESS -->
-<div class="scroll-progress-container">
-  <div id="scrollProgress" class="scroll-progress"></div>
-</div>
+<div class="scroll-progress-container"><div id="scrollProgress" class="scroll-progress"></div></div>
 
 <!-- AMBIENT ORBS -->
 <div id="orbContainer" class="orb-container"></div>
+
 <!-- LOADING SCREEN -->
 <div id="loadingScreen" class="loading-screen">
   <div class="loading-header">
@@ -39,8 +38,6 @@
       <span>Full Stack Developer</span><span class="dot">●</span>
       <span>Backend Engineer</span><span class="dot">●</span>
       <span>Full Stack Developer</span><span class="dot">●</span>
-      <span>Backend Engineer</span><span class="dot">●</span>
-      <span>Full Stack Developer</span><span class="dot">●</span>
     </div>
   </div>
   <div class="loading-wrap" id="loadingWrap">
@@ -52,30 +49,37 @@
         </div>
         <div class="loading-box"></div>
       </div>
-      <div class="loading-content2" id="loadingContent2">
-        <span>Welcome</span>
-      </div>
+      <div class="loading-content2" id="loadingContent2"><span>Welcome</span></div>
     </div>
   </div>
 </div>
 
 <!-- MAIN BODY -->
-<div id="mainBody" class="main-body" style="opacity:0; pointer-events:none;">
+<div id="mainBody" class="main-body" style="opacity:0;pointer-events:none;">
+
+<!-- FIXED LEFT SOCIALS -->
+<div class="fixed-socials">
+  <a href="https://github.com/AlinAlexMyladoor" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
+  <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+  <a href="#" target="_blank" title="Twitter"><i class="ri-twitter-x-line"></i></a>
+  <a href="mailto:alinalex441@gmail.com" title="Email"><i class="ri-mail-fill"></i></a>
+  <div class="social-vline"></div>
+</div>
+
+<!-- FIXED RESUME BTN -->
+<a href="assets/resume.pdf" download class="fixed-resume">RESUME <i class="ri-arrow-right-up-line"></i></a>
 
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">A<span class="accent-dot">.</span></a>
+    <a href="#" class="nav-logo">AA</a>
+    <span class="nav-email">alinalex441@gmail.com</span>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#works">Works</a>
-      <a href="#techstack">Stack</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">ABOUT</a>
+      <a href="#works">WORKS</a>
+      <a href="#contact">CONTACT</a>
     </div>
-    <div class="nav-right">
-      <a href="assets/resume.pdf" download class="nav-resume">Resume <i class="ri-arrow-right-up-line"></i></a>
-      <button class="nav-burger" id="navBurger"><i class="ri-menu-3-line"></i></button>
-    </div>
+    <button class="nav-burger" id="navBurger"><i class="ri-menu-3-line"></i></button>
   </div>
 </nav>
 
@@ -91,355 +95,301 @@
   </div>
 </div>
 
-<!-- HERO SECTION -->
+<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
 <section id="hero">
-  <!-- Three.js 3D scene fills the whole hero -->
-  <canvas id="heroCanvas3D"></canvas>
-  <!-- particle network canvas underneath 3D -->
-  <canvas id="heroCanvas" style="display:none"></canvas>
+  <!-- Three.js renders into hero3dWrap -->
+  <div class="hero-3d-wrap" id="hero3dWrap">
+    <div class="hero-3d-glow"></div>
+    <div class="htag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
+    <div class="htag tag2"><i class="ri-trophy-fill"></i> 1st Place · Idea Pitching</div>
+  </div>
 
-  <div class="hero-inner section-container">
-    <!-- LEFT: name & info -->
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="hero-status"><span class="status-dot"></span>Open to Work</span>
-        <span class="hero-loc"><i class="ri-map-pin-line"></i> Thrissur, Kerala</span>
-      </div>
-      <div class="hero-greeting">Hello! I'm</div>
-      <div class="hero-name-wrap">
-        <div class="hero-name-line split-line"><span class="name-word">ALIN</span></div>
-        <div class="hero-name-line split-line"><span class="name-word stroke">ALEX</span></div>
-      </div>
-      <div class="hero-sub">
-        <span class="typed-prefix">An </span>
-        <span id="typedText"></span><span class="type-cursor">|</span>
-      </div>
-      <div class="hero-stats-row">
-        <div class="hstat"><span class="hstat-num" data-to="6">0</span><span class="hstat-plus">+</span><span class="hstat-label">Projects</span></div>
-        <div class="hstat-sep"></div>
-        <div class="hstat"><span class="hstat-num" data-to="3">0</span><span class="hstat-plus">+</span><span class="hstat-label">Internships</span></div>
-        <div class="hstat-sep"></div>
-        <div class="hstat"><span class="hstat-num" data-to="4">0</span><span class="hstat-plus">+</span><span class="hstat-label">Awards</span></div>
-      </div>
-      <div class="hero-cta">
-        <a href="#works" class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
-        <a href="assets/resume.pdf" download class="btn-outline">Resume <i class="ri-download-2-line"></i></a>
-      </div>
+  <!-- Left: greeting + name -->
+  <div class="hero-left">
+    <div class="hero-status-row">
+      <span class="hero-status"><span class="status-dot"></span>Open to Work</span>
+      <span class="hero-loc"><i class="ri-map-pin-line"></i> Kerala, India</span>
     </div>
-
-    <!-- CENTER: 3D model placeholder (Three.js renders here via canvas) -->
-    <div class="hero-3d-wrap" id="hero3dWrap">
-      <div class="hero-3d-glow"></div>
-      <div class="photo-tag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
-      <div class="photo-tag tag2"><i class="ri-trophy-fill"></i> 1st Place</div>
+    <div class="hero-greeting">Hello! I'm</div>
+    <div class="hero-name">
+      <div class="hn-line"><span class="nw">ALIN</span></div>
+      <div class="hn-line"><span class="nw stroke">ALEX</span></div>
     </div>
-
-    <!-- RIGHT: scrolling role text -->
-    <div class="hero-right">
-      <div class="hero-role-label">An</div>
-      <div class="hero-role-scroll">
-        <div class="hero-role-track" id="heroRoleTrack">
-          <span>AI ENGINEER</span>
-          <span>FULL-STACK DEV</span>
-          <span>BACKEND ENG</span>
-          <span>AI ENGINEER</span>
-          <span>FULL-STACK DEV</span>
-        </div>
-      </div>
-      <div class="hero-socials">
-        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-link"><i class="ri-github-fill"></i></a>
-        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link"><i class="ri-linkedin-box-fill"></i></a>
-        <a href="mailto:alinalex441@gmail.com" class="soc-link"><i class="ri-mail-fill"></i></a>
-      </div>
+    <div class="hero-cta">
+      <a href="#works" class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
+      <a href="#contact" class="btn-outline">Contact</a>
     </div>
   </div>
+
+  <!-- Right: scrolling role text -->
+  <div class="hero-right">
+    <div class="hero-role-pre">An</div>
+    <div class="hero-role-scroll">
+      <div class="hero-role-track" id="heroRoleTrack">
+        <span class="r-active">BACKEND ENG</span>
+        <span>FULL-STACK DEV</span>
+        <span>AI RESEARCHER</span>
+        <span>SIH FINALIST</span>
+        <span>BACKEND ENG</span>
+        <span>FULL-STACK DEV</span>
+      </div>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hstat"><span class="hstat-num" data-to="6">0</span><span class="hp">+</span><br><span class="hl">Projects</span></div>
+      <div class="hstat-sep"></div>
+      <div class="hstat"><span class="hstat-num" data-to="3">0</span><span class="hp">+</span><br><span class="hl">Internships</span></div>
+      <div class="hstat-sep"></div>
+      <div class="hstat"><span class="hstat-num" data-to="4">0</span><span class="hp">+</span><br><span class="hl">Awards</span></div>
+    </div>
+  </div>
+
   <div class="scroll-arrow"><i class="ri-arrow-down-line"></i></div>
 </section>
 
-<!-- ABOUT SECTION -->
-<section id="about" class="section">
-  <div class="section-container">
-    <div class="sec-label reveal">01 — ABOUT</div>
-    <div class="about-grid">
-      <div class="about-left reveal">
-        <h2 class="sec-title">Backend & Full-Stack<br/><span class="grad">Engineer.</span></h2>
-        <p class="sec-para">Crafting production-grade systems — from satellite mining detection to real-time restaurant platforms & concurrent job processors. SIH'25 National Finalist.</p>
-        <div class="about-chips">
-          <span><i class="ri-map-pin-2-fill"></i> Thrissur, Kerala</span>
-          <span><i class="ri-graduation-cap-fill"></i> Christ College of Engineering</span>
-          <span><i class="ri-open-source-fill"></i> FOSS Club</span>
-          <span><i class="ri-global-line"></i> IEEE WIE</span>
+<!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
+<section id="about">
+  <div class="about-wrap">
+    <!-- 3D avatar on left (shows via Three.js + sticky CSS) -->
+    <div class="about-3d-col" id="about3dWrap">
+      <div class="about-3d-glow"></div>
+    </div>
+    <div class="about-text-col reveal">
+      <div class="sec-sublabel">ABOUT ME</div>
+      <p class="about-bio">
+        I am a self-taught Backend &amp; Full-Stack Engineer from Kerala, India. I build production-grade systems, intelligent APIs, and high-performance backends. My expertise includes Go, Python, Django, Spring Boot, PostgreSQL, Docker, and AWS. Currently building concurrent distributed systems and AI-integrated applications. <strong>SIH'25 National Finalist.</strong> Code is architecture, systems are poetry.
+      </p>
+      <div class="about-chips">
+        <span><i class="ri-map-pin-2-fill"></i> Thrissur, Kerala</span>
+        <span><i class="ri-graduation-cap-fill"></i> Christ College of Engineering</span>
+        <span><i class="ri-open-source-fill"></i> FOSS Club</span>
+        <span><i class="ri-global-line"></i> IEEE WIE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHAT I DO ═══════════════════════════════════ -->
+<section id="whatido">
+  <div class="whatido-wrap">
+    <div class="whatido-left">
+      <div class="whatido-heading">WHAT I<br>DO</div>
+      <!-- second 3D scene: desk figure -->
+      <div class="whatido-3d" id="whatido3dWrap">
+        <div class="whatido-3d-glow"></div>
+      </div>
+    </div>
+    <div class="whatido-cards">
+      <div class="skill-card active">
+        <div class="sc-header">
+          <div>
+            <div class="sc-title">BACKEND ENGINEER</div>
+            <div class="sc-sub">Building scalable systems &amp; APIs</div>
+          </div>
+          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
         </div>
-        <div class="about-socials">
-          <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-link"><i class="ri-github-fill"></i></a>
-          <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link"><i class="ri-linkedin-box-fill"></i></a>
-          <a href="mailto:alinalex441@gmail.com" class="soc-link"><i class="ri-mail-fill"></i></a>
+        <div class="sc-body">
+          <p>Designing concurrent job processors, REST APIs, and microservices using Go, Django, and Spring Boot. Specializing in PostgreSQL, Redis, Docker, and AWS deployments with 5000+ jobs/min throughput.</p>
+          <div class="sc-tags"><span>Go</span><span>Django</span><span>Spring Boot</span><span>PostgreSQL</span><span>Docker</span></div>
         </div>
       </div>
-      <div class="about-right reveal delay1">
-        <div class="award-grid">
-          <div class="award-card tilt-card">
-            <div class="aw-icon gold"><i class="ri-trophy-fill"></i></div>
-            <div class="aw-body"><strong>SIH'25</strong><span>National Finalist</span></div>
+      <div class="skill-card">
+        <div class="sc-header">
+          <div>
+            <div class="sc-title">FULL-STACK</div>
+            <div class="sc-sub">Modern web development &amp; scalable applications</div>
           </div>
-          <div class="award-card tilt-card">
-            <div class="aw-icon green"><i class="ri-medal-fill"></i></div>
-            <div class="aw-body"><strong>1st Place</strong><span>Idea Pitching</span></div>
+          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
+        </div>
+        <div class="sc-body">
+          <p>Building responsive and performant web applications using React, Node.js, and Django. Developing real-time features with WebSockets and implementing MERN stack solutions.</p>
+          <div class="sc-tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>WebSockets</span></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-header">
+          <div>
+            <div class="sc-title">AI / ML RESEARCH</div>
+            <div class="sc-sub">Intelligent systems &amp; data pipelines</div>
           </div>
-          <div class="award-card tilt-card">
-            <div class="aw-icon purple"><i class="ri-award-fill"></i></div>
-            <div class="aw-body"><strong>2nd Place</strong><span>Synovate 2025</span></div>
-          </div>
-          <div class="award-card tilt-card">
-            <div class="aw-icon cyan"><i class="ri-lightbulb-flash-fill"></i></div>
-            <div class="aw-body"><strong>2nd Place</strong><span>Sustainable Dev</span></div>
-          </div>
+          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
+        </div>
+        <div class="sc-body">
+          <p>Building AI-powered tools, satellite analysis pipelines, and intelligent automation. Working on AI R&D, developing systems that reduce hallucination by 85% and speed up query generation by 40%.</p>
+          <div class="sc-tags"><span>Python</span><span>ML</span><span>Sentinel API</span><span>Data Pipelines</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE SECTION -->
+<!-- ═══════════════════════════════════ CAREER ═══════════════════════════════════ -->
 <section id="works" class="section">
   <div class="section-container">
-    <div class="sec-label reveal">02 — EXPERIENCE</div>
-    <h2 class="sec-title reveal">Where I've <span class="grad">Worked.</span></h2>
-    <div class="exp-list">
-      <div class="exp-item tilt-card reveal">
-        <div class="exp-left">
-          <div class="exp-logo" style="--lg:#6366f1,#a855f7"><i class="ri-code-box-fill"></i></div>
-          <div class="exp-line"></div>
+    <h2 class="career-title reveal">My career &amp;<br><span class="grad">experience</span></h2>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-role">Jr. Software Engineering Intern</div>
+          <div class="tl-company">White Matrix</div>
+          <div class="tl-type">AI &amp; Backend</div>
         </div>
-        <div class="exp-right">
-          <div class="exp-hdr">
-            <div>
-              <h3>White Matrix</h3>
-              <span class="exp-role"><i class="ri-terminal-box-line"></i> Jr. Software Engineering Intern</span>
-              <span class="exp-date"><i class="ri-calendar-line"></i> Feb 2026 — Present</span>
-            </div>
-            <span class="exp-badge live"><i class="ri-radio-button-fill"></i> Current</span>
-          </div>
-          <div class="exp-metrics">
-            <div class="metric"><strong>40%</strong><span>faster query gen</span></div>
-            <div class="metric"><strong>85%</strong><span>less hallucination</span></div>
-            <div class="metric"><strong>30%</strong><span>faster onboarding</span></div>
-          </div>
-          <div class="exp-tags"><span>Python</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div>
+        <div class="tl-mid">
+          <div class="tl-year">NOW</div>
+          <div class="tl-dot active"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <p>Developing AI-powered SQL generation tools, reducing query generation time by 40% and hallucination by 85%. Improving developer onboarding by 30%.</p>
+          <div class="tl-tags"><span>Python</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div>
         </div>
       </div>
-      <div class="exp-item tilt-card reveal delay1">
-        <div class="exp-left">
-          <div class="exp-logo" style="--lg:#06b6d4,#22d3ee"><i class="ri-brain-fill"></i></div>
-          <div class="exp-line"></div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-role">AI R&amp;D Intern</div>
+          <div class="tl-company">AetherHub</div>
+          <div class="tl-type">Research &amp; Projects</div>
         </div>
-        <div class="exp-right">
-          <div class="exp-hdr">
-            <div>
-              <h3>AetherHub</h3>
-              <span class="exp-role"><i class="ri-robot-line"></i> AI R&D Intern</span>
-              <span class="exp-date"><i class="ri-calendar-line"></i> May 2025 — Present</span>
-            </div>
-            <span class="exp-badge live"><i class="ri-radio-button-fill"></i> Current</span>
-          </div>
-          <div class="exp-metrics">
-            <div class="metric full"><span>AI/ML research — intelligent systems & data pipelines</span></div>
-          </div>
-          <div class="exp-tags"><span>AI/ML</span><span>Python</span><span>Research</span></div>
+        <div class="tl-mid">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <p>AI/ML research — building intelligent systems and data pipelines. Developing next-gen conversational AI agents and JARVIS-like personal assistants.</p>
+          <div class="tl-tags"><span>AI/ML</span><span>Python</span><span>Research</span></div>
         </div>
       </div>
-      <div class="exp-item tilt-card reveal delay2">
-        <div class="exp-left">
-          <div class="exp-logo" style="--lg:#f59e0b,#fbbf24"><i class="ri-shopping-cart-fill"></i></div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-role">Full Stack Developer Intern</div>
+          <div class="tl-company">Ziuke Infotech</div>
+          <div class="tl-type">Freelance &amp; Projects</div>
         </div>
-        <div class="exp-right">
-          <div class="exp-hdr">
-            <div>
-              <h3>Ziuke Infotech</h3>
-              <span class="exp-role"><i class="ri-stack-line"></i> Full Stack Developer Intern</span>
-              <span class="exp-date"><i class="ri-calendar-line"></i> Jun — Jul 2025</span>
-            </div>
-            <span class="exp-badge done"><i class="ri-check-line"></i> Completed</span>
-          </div>
-          <div class="exp-metrics">
-            <div class="metric"><strong>500+</strong><span>products</span></div>
-            <div class="metric"><strong>30%</strong><span>query boost</span></div>
-            <div class="metric"><strong>95%</strong><span>error reduction</span></div>
-          </div>
-          <div class="exp-tags"><span>Django</span><span>MySQL</span><span>JavaScript</span></div>
+        <div class="tl-mid">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <p>Built e-commerce platform managing 500+ products, boosting query performance by 30% and reducing errors by 95%.</p>
+          <div class="tl-tags"><span>Django</span><span>MySQL</span><span>JavaScript</span></div>
         </div>
       </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-left">
+          <div class="tl-role">SIH National Finalist</div>
+          <div class="tl-company">Smart India Hackathon</div>
+          <div class="tl-type">Competition</div>
+        </div>
+        <div class="tl-mid">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-right">
+          <p>National finalist with MineGuard — satellite-based illegal mining detection achieving 90% false-positive reduction.</p>
+          <div class="tl-tags"><span>Python</span><span>Sentinel</span><span>Plotly</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- TECH STACK SECTION -->
-<section id="techstack" class="techstack">
-  <h2 class="techstack-title">Tech Stack</h2>
-  <div class="techstack-canvas-wrap">
-    <canvas id="stackCanvas"></canvas>
-  </div>
-  <div class="techstack-pills-wrap">
-    <div class="stack-category">
-      <div class="cat-label">Languages</div>
-      <div class="cat-pills">
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>Python</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" alt="Go"/>Go</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>Java</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/>JavaScript</div>
-      </div>
-    </div>
-    <div class="stack-category">
-      <div class="cat-label">Frameworks</div>
-      <div class="cat-pills">
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"/>Django</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"/>Spring Boot</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/>React</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node"/>Node.js</div>
-      </div>
-    </div>
-    <div class="stack-category">
-      <div class="cat-label">Data & Cloud</div>
-      <div class="cat-pills">
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PG"/>PostgreSQL</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="Mongo"/>MongoDB</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>Docker</div>
-        <div class="tech-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"/>AWS</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS SECTION -->
+<!-- ═══════════════════════════════════ PROJECTS ═══════════════════════════════════ -->
 <section id="projects" class="section">
   <div class="section-container">
-    <div class="sec-label reveal">03 — PROJECTS</div>
-    <h2 class="sec-title reveal">What I've <span class="grad">Built.</span></h2>
-    <div class="proj-grid">
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card featured tilt-card reveal">
-        <div class="pc-img"><img src="assets/proj_mineguard.png" alt="MineGuard"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge">SIH'25</span><span class="pc-num">01</span></div>
-          <h3>MineGuard</h3>
-          <p>Satellite mining detection — <strong>90% false positive reduction</strong></p>
-          <div class="pc-tags"><span>Python</span><span>Sentinel</span><span>Plotly</span></div>
-        </div>
+    <h2 class="work-title reveal">My <span class="grad">Work</span></h2>
+    <div class="proj-new-grid">
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">01</div>
+        <div class="pnc-cat">AI / Remote Sensing</div>
+        <div class="pnc-name">MineGuard</div>
+        <div class="pnc-tools">Python · Sentinel · Plotly · ML</div>
+        <div class="pnc-img"><img src="assets/proj_mineguard.png" alt="MineGuard"/></div>
       </a>
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card tilt-card reveal delay1">
-        <div class="pc-img"><img src="assets/proj_jobs.png" alt="Job Processor"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge go">Go</span><span class="pc-num">02</span></div>
-          <h3>Concurrent Job Processor</h3>
-          <p><strong>5000+ jobs/min</strong> — goroutine architecture</p>
-          <div class="pc-tags"><span>Go</span><span>Goroutines</span><span>Channels</span></div>
-        </div>
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">02</div>
+        <div class="pnc-cat">Backend / Systems</div>
+        <div class="pnc-name">Concurrent Job Processor</div>
+        <div class="pnc-tools">Go · Goroutines · Channels · Redis</div>
+        <div class="pnc-img"><img src="assets/proj_jobs.png" alt="Job Processor"/></div>
       </a>
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card tilt-card reveal delay2">
-        <div class="pc-img"><img src="assets/proj_foodhub.png" alt="FoodHub"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge spring">Spring</span><span class="pc-num">03</span></div>
-          <h3>FoodHub</h3>
-          <p>Real-time restaurant platform — <strong>ms-latency sync</strong></p>
-          <div class="pc-tags"><span>Spring Boot</span><span>WebSockets</span></div>
-        </div>
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">03</div>
+        <div class="pnc-cat">Full-Stack / Real-time</div>
+        <div class="pnc-name">FoodHub</div>
+        <div class="pnc-tools">Spring Boot · WebSockets · React</div>
+        <div class="pnc-img"><img src="assets/proj_foodhub.png" alt="FoodHub"/></div>
       </a>
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card tilt-card reveal">
-        <div class="pc-img"><img src="assets/proj_eballot.png" alt="E-Ballot"/><div class="pc-overlay"><i class="ri-arrow-right-up-line"></i></div></div>
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge mern">MERN</span><span class="pc-num">04</span></div>
-          <h3>E-Ballot</h3>
-          <p>Secure voting platform — <strong>zero double-votes</strong></p>
-          <div class="pc-tags"><span>MongoDB</span><span>React</span><span>Node</span></div>
-        </div>
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">04</div>
+        <div class="pnc-cat">Blockchain / MERN</div>
+        <div class="pnc-name">E-Ballot</div>
+        <div class="pnc-tools">MongoDB · React · Node · Express</div>
+        <div class="pnc-img"><img src="assets/proj_eballot.png" alt="E-Ballot"/></div>
       </a>
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card sm tilt-card reveal delay1">
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge django">Django</span><span class="pc-num">05</span></div>
-          <h3>Cart Shopee</h3>
-          <p>E-Commerce — <strong>500+ products</strong></p>
-          <div class="pc-tags"><span>Django</span><span>MySQL</span></div>
-        </div>
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">05</div>
+        <div class="pnc-cat">E-Commerce / Django</div>
+        <div class="pnc-name">Cart Shopee</div>
+        <div class="pnc-tools">Django · MySQL · JavaScript</div>
+        <div class="pnc-img"><img src="assets/proj_foodhub.png" alt="Cart Shopee"/></div>
       </a>
-      
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-card sm tilt-card reveal delay2">
-        <div class="pc-body">
-          <div class="pc-top"><span class="pc-badge go">Go</span><span class="pc-num">06</span></div>
-          <h3>Go E-Commerce API</h3>
-          <p>Scalable REST — concurrent transactions</p>
-          <div class="pc-tags"><span>Go</span><span>REST</span><span>PostgreSQL</span></div>
-        </div>
+
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
+        <div class="pnc-num">06</div>
+        <div class="pnc-cat">Backend / REST</div>
+        <div class="pnc-name">Go E-Commerce API</div>
+        <div class="pnc-tools">Go · PostgreSQL · REST · Docker</div>
+        <div class="pnc-img"><img src="assets/proj_jobs.png" alt="Go API"/></div>
       </a>
+
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certs" class="section">
+<!-- ═══════════════════════════════════ TECH STACK ═══════════════════════════════════ -->
+<section id="techstack" class="section ts-section">
   <div class="section-container">
-    <div class="sec-label reveal">04 — CREDENTIALS</div>
-    <h2 class="sec-title reveal">Certified <span class="grad">Skills.</span></h2>
-    <div class="cert-grid">
-      <div class="cert-card tilt-card reveal" style="--ci:#06b6d4">
-        <div class="cert-icon"><i class="ri-code-s-slash-fill"></i></div>
-        <div class="cert-info"><strong>Responsive Web Design</strong><span>freeCodeCamp · 300hrs</span></div>
-      </div>
-      <div class="cert-card tilt-card reveal delay1" style="--ci:#a855f7">
-        <div class="cert-icon"><i class="ri-flask-fill"></i></div>
-        <div class="cert-info"><strong>Python for Data Science</strong><span>NPTEL · IIT Madras</span></div>
-      </div>
-      <div class="cert-card tilt-card reveal delay2" style="--ci:#ec4899">
-        <div class="cert-icon"><i class="ri-global-fill"></i></div>
-        <div class="cert-info"><strong>Digital 101</strong><span>NASSCOM</span></div>
-      </div>
-      <div class="cert-card tilt-card reveal delay3" style="--ci:#22c55e">
-        <div class="cert-icon"><i class="ri-leaf-fill"></i></div>
-        <div class="cert-info"><strong>Java Spring Boot</strong><span>Neu iPlus Education</span></div>
-      </div>
+    <h2 class="ts-big-title">TECH STACK</h2>
+    <div class="ts-grid">
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>Python</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" alt="Go"/>Go</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>Java</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/>JavaScript</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TS"/>TypeScript</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"/>Django</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"/>Spring Boot</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"/>React</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node"/>Node.js</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"/>FastAPI</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PG"/>PostgreSQL</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="Mongo"/>MongoDB</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/>MySQL</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"/>Redis</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>Docker</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"/>AWS</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/>Git</div>
+      <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"/>Linux</div>
     </div>
   </div>
 </section>
 
-<!-- LEADERSHIP MARQUEE -->
-<section id="leadership" class="section lead-section">
-  <div class="section-container">
-    <div class="sec-label reveal">05 — LEADERSHIP</div>
-    <h2 class="sec-title reveal">Beyond <span class="grad">Code.</span></h2>
-  </div>
-  <div class="lead-marquee-wrap">
-    <div class="lead-marquee">
-      <div class="lm-track">
-        <span><i class="ri-star-fill"></i> Event Coordinator — FOSS Club</span>
-        <span><i class="ri-file-text-fill"></i> Documentation Lead — IEEE WIE</span>
-        <span><i class="ri-building-fill"></i> IV Coordinator — TCS Kochi</span>
-        <span><i class="ri-megaphone-fill"></i> Publicity Lead — Beach Hack 7</span>
-        <span><i class="ri-calendar-event-fill"></i> Event Coordinator — Christovate</span>
-        <span><i class="ri-earth-fill"></i> SDGP Coordinator</span>
-        <span><i class="ri-star-fill"></i> Event Coordinator — FOSS Club</span>
-        <span><i class="ri-file-text-fill"></i> Documentation Lead — IEEE WIE</span>
-        <span><i class="ri-building-fill"></i> IV Coordinator — TCS Kochi</span>
-        <span><i class="ri-megaphone-fill"></i> Publicity Lead — Beach Hack 7</span>
-        <span><i class="ri-calendar-event-fill"></i> Event Coordinator — Christovate</span>
-        <span><i class="ri-earth-fill"></i> SDGP Coordinator</span>
-      </div>
-    </div>
-  </div>
-  <div class="section-container">
-    <div class="event-pills reveal">
-      <span class="epill"><i class="ri-fire-fill"></i> HackForChrist</span>
-      <span class="epill"><i class="ri-graduation-cap-fill"></i> IEEE YESS'25 — NIT Calicut</span>
-      <span class="epill"><i class="ri-rocket-fill"></i> NODE 2025 — Kerala Startup</span>
-      <span class="epill"><i class="ri-open-source-fill"></i> ICFOSS Fest</span>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT SECTION -->
+<!-- ═══════════════════════════════════ CONTACT ═══════════════════════════════════ -->
 <section id="contact" class="section">
   <div class="section-container">
-    <div class="sec-label reveal">06 — CONTACT</div>
     <div class="contact-wrap">
       <div class="contact-left reveal">
-        <h2 class="sec-title">Let's <span class="grad">Connect.</span></h2>
+        <h2 class="contact-title">Let's <span class="grad">Connect.</span></h2>
         <p>Open to full-time roles, internships, and interesting collaborations.</p>
         <div class="contact-links">
           <a href="mailto:alinalex441@gmail.com" class="clink"><div class="clink-icon"><i class="ri-mail-fill"></i></div><span>alinalex441@gmail.com</span></a>
@@ -450,19 +400,10 @@
           <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link lg"><i class="ri-linkedin-box-fill"></i></a>
         </div>
       </div>
-      <form id="cForm" class="contact-form tilt-card reveal delay1">
-        <div class="cf-field">
-          <i class="ri-user-line"></i>
-          <input type="text" placeholder="Your Name" required/>
-        </div>
-        <div class="cf-field">
-          <i class="ri-mail-line"></i>
-          <input type="email" placeholder="Email Address" required/>
-        </div>
-        <div class="cf-field ta">
-          <i class="ri-message-3-line"></i>
-          <textarea rows="4" placeholder="Your Message..."></textarea>
-        </div>
+      <form id="cForm" class="contact-form tilt-card reveal">
+        <div class="cf-field"><i class="ri-user-line"></i><input type="text" placeholder="Your Name" required/></div>
+        <div class="cf-field"><i class="ri-mail-line"></i><input type="email" placeholder="Email Address" required/></div>
+        <div class="cf-field ta"><i class="ri-message-3-line"></i><textarea rows="4" placeholder="Your Message..."></textarea></div>
         <button type="submit" id="fBtn" class="btn-primary full"><i class="ri-send-plane-fill"></i> Send Message</button>
       </form>
     </div>
@@ -472,7 +413,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner section-container">
-    <span class="f-brand">A<span class="accent-dot">.</span></span>
+    <span class="f-brand">AA<span class="accent-dot">.</span></span>
     <span class="f-copy"><i class="ri-copyright-line"></i> 2026 Alin Alex · Kerala, India</span>
     <div class="f-links">
       <a href="https://github.com/AlinAlexMyladoor" target="_blank"><i class="ri-github-fill"></i></a>

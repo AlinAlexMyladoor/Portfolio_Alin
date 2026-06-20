@@ -434,3 +434,11 @@ const pillObs = new IntersectionObserver(entries => {
   });
 }, { threshold: .2 });
 document.querySelectorAll('.cat-pills').forEach(g => pillObs.observe(g));
+
+// ─── SKILL CARD TOGGLE ──────────────────────────────────────
+document.querySelectorAll('.sc-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const card = header.parentElement;
+    card.classList.toggle('active');
+  });
+});
