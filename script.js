@@ -232,21 +232,7 @@ function animHero() {
 }
 animHero();
 
-// ─── STACK CANVAS ─────────────────────────────────────────
-const sCanvas = document.getElementById('stackCanvas');
-if(sCanvas) {
-  const sCtx = sCanvas.getContext('2d');
-  let SW, SH, spts = [];
-  function resizeStack(){SW=sCanvas.width=sCanvas.offsetWidth;SH=sCanvas.height=sCanvas.offsetHeight;}
-  resizeStack(); window.addEventListener('resize', resizeStack);
-  class SPt{constructor(){this.x=Math.random()*SW;this.y=Math.random()*SH;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.8+.5;this.a=Math.random()*.2+.03;this.hue=260+Math.random()*40;}
-    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>SW)this.vx*=-1;if(this.y<0||this.y>SH)this.vy*=-1;}
-    draw(){sCtx.beginPath();sCtx.arc(this.x,this.y,this.r,0,Math.PI*2);sCtx.fillStyle=`hsla(${this.hue},70%,75%,${this.a})`;sCtx.fill();}
-  }
-  for(let i=0;i<100;i++)spts.push(new SPt());
-  function animStack(){sCtx.clearRect(0,0,SW,SH);spts.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animStack);}
-  animStack();
-}
+// ─── STACK CANVAS REPLACED BY 3D SCENE ────────────────────
 
 // ─── TYPED EFFECT ─────────────────────────────────────────
 const roles = ['Backend Engineer','Full-Stack Developer','Go · Django · Spring','System Architect','SIH\'25 Finalist'];

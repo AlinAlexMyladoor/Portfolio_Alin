@@ -26,7 +26,7 @@
   camera.position.set(0, 0, 5);
 
   // ── Lighting ─────────────────────────────────────────────
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
   scene.add(ambientLight);
 
   // Main purple point light (the glow behind the head)
@@ -40,30 +40,42 @@
   scene.add(rimLight);
 
   // Front soft white
-  const frontLight = new THREE.DirectionalLight(0xffffff, 1.5);
+  const frontLight = new THREE.DirectionalLight(0xffffff, 1.2);
   frontLight.position.set(1, 1, 5);
   scene.add(frontLight);
 
   // ── Materials ────────────────────────────────────────────
-  // Ceramic/porcelain-like material for the head body
+  // Warm skin tone based on photo
   const bodyMat = new THREE.MeshStandardMaterial({
-    color: 0xe8e0f0,
-    roughness: 0.3,
+    color: 0xdfaa8b,
+    roughness: 0.4,
     metalness: 0.1,
   });
 
-  const accentMat = new THREE.MeshStandardMaterial({
-    color: 0x1a0a2e,
-    roughness: 0.6,
-    metalness: 0.2,
+  // Dark hair
+  const hairMat = new THREE.MeshStandardMaterial({
+    color: 0x1a0a0f,
+    roughness: 0.7,
+    metalness: 0.1,
   });
 
   const eyeMat = new THREE.MeshStandardMaterial({
-    color: 0x6040c0,
-    roughness: 0.2,
-    metalness: 0.5,
-    emissive: 0x3020a0,
-    emissiveIntensity: 0.3,
+    color: 0x110800,
+    roughness: 0.1,
+    metalness: 0.8,
+  });
+
+  // Purple dress based on photo
+  const shirtMat = new THREE.MeshStandardMaterial({ 
+    color: 0x4a148c, 
+    roughness: 0.6 
+  });
+  
+  // Gold accents for the dress
+  const goldMat = new THREE.MeshStandardMaterial({
+    color: 0xffd700,
+    roughness: 0.3,
+    metalness: 0.8,
   });
 
   // ── Build Avatar ─────────────────────────────────────────
@@ -75,84 +87,133 @@
   head.castShadow = true;
   avatar.add(head);
 
-  // Hair block on top
-  const hairGeo  = new THREE.SphereGeometry(1.02, 64, 64, 0, Math.PI * 2, 0, Math.PI * 0.45);
-  const hair     = new THREE.Mesh(hairGeo, accentMat);
+  // Hair Base on top
+  const hairGeo  = new THREE.SphereGeometry(1.05, 64, 64, 0, Math.PI * 2, 0, Math.PI * 0.55);
+  const hair     = new THREE.Mesh(hairGeo, hairMat);
   hair.position.y = 0.05;
   avatar.add(hair);
 
-  // Hair front tuft
-  const tuftGeo  = new THREE.SphereGeometry(0.35, 32, 32);
-  const tuft     = new THREE.Mesh(tuftGeo, accentMat);
-  tuft.position.set(0, 0.85, 0.75);
-  tuft.scale.set(1, 0.5, 0.6);
-  avatar.add(tuft);
+  // Voluminous curly side hair (Left & Right)
+  const sideHairGeo = new THREE.SphereGeometry(0.6, 32, 32);
+  const sideHairL = new THREE.Mesh(sideHairGeo, hairMat);
+  sideHairL.position.set(-0.8, -0.2, 0.2);
+  sideHairL.scale.set(1, 1.8, 1);
+  avatar.add(sideHairL);
+  
+  const sideHairR = new THREE.Mesh(sideHairGeo, hairMat);
+  sideHairR.position.set(0.8, -0.2, 0.2);
+  sideHairR.scale.set(1, 1.8, 1);
+  avatar.add(sideHairR);
+  
+  const backHairGeo = new THREE.SphereGeometry(0.8, 32, 32);
+  const backHair = new THREE.Mesh(backHairGeo, hairMat);
+  backHair.position.set(0, -0.5, -0.5);
+  backHair.scale.set(1.2, 1.5, 1);
+  avatar.add(backHair);
+
+  // Front bangs
+  const bangsGeo = new THREE.SphereGeometry(0.4, 32, 32);
+  const bangL = new THREE.Mesh(bangsGeo, hairMat);
+  bangL.position.set(-0.4, 0.8, 0.75);
+  bangL.scale.set(1.2, 0.6, 0.8);
+  avatar.add(bangL);
+  const bangR = new THREE.Mesh(bangsGeo, hairMat);
+  bangR.position.set(0.4, 0.8, 0.75);
+  bangR.scale.set(1.2, 0.6, 0.8);
+  avatar.add(bangR);
 
   // Left eye
-  const eyeGeo = new THREE.SphereGeometry(0.13, 32, 32);
+  const eyeGeo = new THREE.SphereGeometry(0.14, 32, 32);
   const eyeL   = new THREE.Mesh(eyeGeo, eyeMat);
-  eyeL.position.set(-0.33, 0.1, 0.93);
+  eyeL.position.set(-0.35, 0.1, 0.94);
   avatar.add(eyeL);
 
   // Right eye
   const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
-  eyeR.position.set(0.33, 0.1, 0.93);
+  eyeR.position.set(0.35, 0.1, 0.94);
   avatar.add(eyeR);
 
-  // Eye whites
+  // Eye whites (bigger, rounder for a cute look)
   const eWhiteMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
-  const eWhiteGeo = new THREE.SphereGeometry(0.18, 32, 32);
+  const eWhiteGeo = new THREE.SphereGeometry(0.22, 32, 32);
   const ewL = new THREE.Mesh(eWhiteGeo, eWhiteMat);
-  ewL.position.set(-0.33, 0.1, 0.88);
+  ewL.position.set(-0.35, 0.1, 0.86);
   ewL.scale.set(1, 0.8, 0.4);
   avatar.add(ewL);
+  
   const ewR = new THREE.Mesh(eWhiteGeo, eWhiteMat);
-  ewR.position.set(0.33, 0.1, 0.88);
+  ewR.position.set(0.35, 0.1, 0.86);
   ewR.scale.set(1, 0.8, 0.4);
   avatar.add(ewR);
+  
+  // Blush
+  const blushMat = new THREE.MeshBasicMaterial({ color: 0xff9999, transparent: true, opacity: 0.4 });
+  const blushGeo = new THREE.CircleGeometry(0.15, 32);
+  const blushL = new THREE.Mesh(blushGeo, blushMat);
+  blushL.position.set(-0.45, -0.15, 0.95);
+  blushL.rotation.y = -0.2;
+  avatar.add(blushL);
+  const blushR = new THREE.Mesh(blushGeo, blushMat);
+  blushR.position.set(0.45, -0.15, 0.95);
+  blushR.rotation.y = 0.2;
+  avatar.add(blushR);
 
-  // Nose
-  const noseMat = new THREE.MeshStandardMaterial({ color: 0xd4c8e0, roughness: 0.5 });
-  const noseGeo = new THREE.SphereGeometry(0.1, 32, 32);
+  // Nose (small and cute)
+  const noseMat = new THREE.MeshStandardMaterial({ color: 0xc8987b, roughness: 0.5 });
+  const noseGeo = new THREE.SphereGeometry(0.08, 32, 32);
   const nose    = new THREE.Mesh(noseGeo, noseMat);
-  nose.position.set(0, -0.12, 0.98);
-  nose.scale.set(1.1, 0.8, 0.7);
+  nose.position.set(0, -0.1, 0.98);
+  nose.scale.set(1, 0.8, 0.8);
   avatar.add(nose);
+  
+  // Smile
+  const smileGeo = new THREE.TorusGeometry(0.12, 0.02, 16, 32, Math.PI);
+  const smileMat = new THREE.MeshBasicMaterial({ color: 0x803030 });
+  const smile = new THREE.Mesh(smileGeo, smileMat);
+  smile.position.set(0, -0.28, 0.95);
+  smile.rotation.x = Math.PI;
+  avatar.add(smile);
 
   // Ears
-  const earGeo = new THREE.SphereGeometry(0.2, 32, 32);
+  const earGeo = new THREE.SphereGeometry(0.18, 32, 32);
   const earL   = new THREE.Mesh(earGeo, bodyMat);
   earL.position.set(-1.0, 0.05, 0.0);
-  earL.scale.set(0.5, 0.7, 0.5);
+  earL.scale.set(0.5, 0.8, 0.5);
   avatar.add(earL);
   const earR = new THREE.Mesh(earGeo, bodyMat);
   earR.position.set(1.0, 0.05, 0.0);
-  earR.scale.set(0.5, 0.7, 0.5);
+  earR.scale.set(0.5, 0.8, 0.5);
   avatar.add(earR);
 
   // Neck
-  const neckGeo  = new THREE.CylinderGeometry(0.28, 0.32, 0.5, 32);
+  const neckGeo  = new THREE.CylinderGeometry(0.25, 0.3, 0.6, 32);
   const neck     = new THREE.Mesh(neckGeo, bodyMat);
   neck.position.y = -1.2;
   avatar.add(neck);
 
-  // Collar/shirt top
-  const shirtGeo = new THREE.CylinderGeometry(0.7, 0.8, 0.4, 32);
-  const shirtMat = new THREE.MeshStandardMaterial({ color: 0xf0ecf8, roughness: 0.6 });
-  const shirt    = new THREE.Mesh(shirtGeo, shirtMat);
+  // Collar/shirt top (Purple dress)
+  const shirtGeo2 = new THREE.CylinderGeometry(0.65, 0.9, 0.5, 32);
+  const shirt    = new THREE.Mesh(shirtGeo2, shirtMat);
   shirt.position.y = -1.7;
   avatar.add(shirt);
+  
+  // Gold accent necklace/trim
+  const trimGeo = new THREE.TorusGeometry(0.66, 0.03, 16, 64);
+  const trim = new THREE.Mesh(trimGeo, goldMat);
+  trim.rotation.x = Math.PI / 2;
+  trim.position.y = -1.48;
+  avatar.add(trim);
 
   // Eyebrows
-  const browMat = new THREE.MeshStandardMaterial({ color: 0x1a0a2e, roughness: 0.8 });
-  const browGeo = new THREE.BoxGeometry(0.28, 0.04, 0.06);
+  const browMat = new THREE.MeshStandardMaterial({ color: 0x1a0a0f, roughness: 0.8 });
+  const browGeo = new THREE.BoxGeometry(0.25, 0.04, 0.06);
   const browL   = new THREE.Mesh(browGeo, browMat);
-  browL.position.set(-0.33, 0.33, 0.96);
-  browL.rotation.z = 0.1;
+  browL.position.set(-0.35, 0.35, 0.94);
+  browL.rotation.z = 0.05;
   avatar.add(browL);
   const browR = new THREE.Mesh(browGeo, browMat);
-  browR.position.set(0.33, 0.33, 0.96);
-  browR.rotation.z = -0.1;
+  browR.position.set(0.35, 0.35, 0.94);
+  browR.rotation.z = -0.05;
   avatar.add(browR);
 
   avatar.position.y = -0.3;
