@@ -6,78 +6,60 @@
 <title>Alin Alex — Backend & Full-Stack Engineer</title>
 <meta name="description" content="Alin Alex — Backend & Full-Stack Engineer. SIH'25 Finalist. Go, Django, Spring Boot, MERN."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"/>
 <link rel="stylesheet" href="style.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body>
 
-<!-- CURSOR -->
+<!-- CUSTOM CURSOR -->
 <div id="cursor" class="cursor"></div>
 <div id="cursorDot" class="cursor-dot"></div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress-container"><div id="scrollProgress" class="scroll-progress"></div></div>
 
-<!-- AMBIENT ORBS -->
-<div id="orbContainer" class="orb-container"></div>
-
 <!-- LOADING SCREEN -->
 <div id="loadingScreen" class="loading-screen">
   <div class="loading-header">
-    <a href="#" class="loader-title">AlinAlex</a>
-    <div class="loaderGame-container">
-      <div class="loaderGame-in" id="gameLines"></div>
-      <div class="loaderGame-ball"></div>
-    </div>
+    <span class="loader-logo">AA /&gt;</span>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+    <span class="loader-pct" id="loadPct">0%</span>
   </div>
-  <div class="loading-marquee">
-    <div class="marquee-inner">
-      <span>Backend Engineer</span><span class="dot">●</span>
-      <span>Full Stack Developer</span><span class="dot">●</span>
-      <span>Backend Engineer</span><span class="dot">●</span>
-      <span>Full Stack Developer</span><span class="dot">●</span>
-    </div>
+  <div class="loader-center">
+    <div class="loader-name">ALIN ALEX</div>
+    <div class="loader-sub">PORTFOLIO <span class="loader-yr">2026</span></div>
   </div>
-  <div class="loading-wrap" id="loadingWrap">
-    <div class="loading-hover" id="loadingHover"></div>
-    <div class="loading-button" id="loadingBtn">
-      <div class="loading-container" id="loadingContainer">
-        <div class="loading-content">
-          <div class="loading-content-in">Loading <span id="loadPct">0%</span></div>
-        </div>
-        <div class="loading-box"></div>
-      </div>
-      <div class="loading-content2" id="loadingContent2"><span>Welcome</span></div>
-    </div>
+  <div class="loader-bottom">
+    <div class="loader-marquee"><div class="lm-track" id="lmTrack">
+      <span>Backend Engineer</span><span class="ldot">·</span>
+      <span>Full-Stack Dev</span><span class="ldot">·</span>
+      <span>AI Researcher</span><span class="ldot">·</span>
+      <span>SIH Finalist</span><span class="ldot">·</span>
+      <span>Backend Engineer</span><span class="ldot">·</span>
+      <span>Full-Stack Dev</span><span class="ldot">·</span>
+    </div></div>
   </div>
 </div>
 
 <!-- MAIN BODY -->
 <div id="mainBody" class="main-body" style="opacity:0;pointer-events:none;">
 
-<!-- FIXED LEFT SOCIALS -->
-<div class="fixed-socials">
-  <a href="https://github.com/AlinAlexMyladoor" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
-  <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
-  <a href="#" target="_blank" title="Twitter"><i class="ri-twitter-x-line"></i></a>
-  <a href="mailto:alinalex441@gmail.com" title="Email"><i class="ri-mail-fill"></i></a>
-  <div class="social-vline"></div>
-</div>
+<!-- VIEWPORT BORDER GLOW -->
+<div class="viewport-border"></div>
 
-<!-- FIXED RESUME BTN -->
-<a href="assets/resume.pdf" download class="fixed-resume">RESUME <i class="ri-arrow-right-up-line"></i></a>
+<!-- FIXED BG ORB -->
+<div class="bg-orb"></div>
 
-<!-- NAVBAR -->
+<!-- ── NAVBAR ── -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">AA</a>
+    <a href="#" class="nav-logo">AA /&gt;</a>
     <span class="nav-email">alinalex441@gmail.com</span>
     <div class="nav-links">
-      <a href="#about">ABOUT</a>
-      <a href="#works">WORKS</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#about" id="nl-about">ABOUT</a>
+      <a href="#works" id="nl-works">WORK</a>
+      <a href="#contact" id="nl-contact">CONTACT</a>
     </div>
     <button class="nav-burger" id="navBurger"><i class="ri-menu-3-line"></i></button>
   </div>
@@ -87,143 +69,120 @@
 <div id="mobileNav" class="mobile-nav">
   <button class="mobile-close" id="mobileClose"><i class="ri-close-line"></i></button>
   <div class="mobile-links">
-    <a href="#about" class="mobile-link">About</a>
-    <a href="#works" class="mobile-link">Works</a>
+    <a href="#about"    class="mobile-link">About</a>
+    <a href="#works"    class="mobile-link">Work</a>
     <a href="#techstack" class="mobile-link">Stack</a>
-    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#contact"  class="mobile-link">Contact</a>
     <a href="assets/resume.pdf" download class="mobile-link">Resume</a>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+<!-- FIXED LEFT SOCIALS -->
+<div class="fixed-socials">
+  <a href="https://github.com/AlinAlexMyladoor" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
+  <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+  <a href="mailto:alinalex441@gmail.com" title="Email"><i class="ri-mail-fill"></i></a>
+  <div class="social-vline"></div>
+</div>
+
+<!-- FIXED RESUME -->
+<a href="assets/resume.pdf" download class="fixed-resume">RESUME <i class="ri-arrow-right-up-line"></i></a>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section id="hero">
-  <!-- Three.js renders into hero3dWrap -->
-  <div class="hero-3d-wrap" id="hero3dWrap">
-    <div class="hero-3d-glow"></div>
-    <div class="htag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
-    <div class="htag tag2"><i class="ri-trophy-fill"></i> 1st Place · Idea Pitching</div>
-  </div>
+  <div class="hero-layout">
 
-  <!-- Left: greeting + name -->
-  <div class="hero-left">
-    <div class="hero-status-row">
-      <span class="hero-status"><span class="status-dot"></span>Open to Work</span>
-      <span class="hero-loc"><i class="ri-map-pin-line"></i> Kerala, India</span>
-    </div>
-    <div class="hero-greeting">Hello! I'm</div>
-    <div class="hero-name">
-      <div class="hn-line"><span class="nw">ALIN</span></div>
-      <div class="hn-line"><span class="nw stroke">ALEX</span></div>
-    </div>
-    <div class="hero-cta">
-      <a href="#works" class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
-      <a href="#contact" class="btn-outline">Contact</a>
-    </div>
-  </div>
-
-  <!-- Right: scrolling role text -->
-  <div class="hero-right">
-    <div class="hero-role-pre">An</div>
-    <div class="hero-role-scroll">
-      <div class="hero-role-track" id="heroRoleTrack">
-        <span class="r-active">BACKEND ENG</span>
-        <span>FULL-STACK DEV</span>
-        <span>AI RESEARCHER</span>
-        <span>SIH FINALIST</span>
-        <span>BACKEND ENG</span>
-        <span>FULL-STACK DEV</span>
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-greeting">Hello! I'm</div>
+      <div class="hero-name">
+        <div class="hn-line"><span class="nw">ALIN</span></div>
+        <div class="hn-line"><span class="nw stroke">ALEX</span></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#works"   class="btn-primary">View Projects <i class="ri-arrow-right-line"></i></a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
       </div>
     </div>
-    <div class="hero-stats-row">
-      <div class="hstat"><span class="hstat-num" data-to="6">0</span><span class="hp">+</span><br><span class="hl">Projects</span></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><span class="hstat-num" data-to="3">0</span><span class="hp">+</span><br><span class="hl">Internships</span></div>
-      <div class="hstat-sep"></div>
-      <div class="hstat"><span class="hstat-num" data-to="4">0</span><span class="hp">+</span><br><span class="hl">Awards</span></div>
-    </div>
-  </div>
 
+    <!-- CENTER — Photo Avatar -->
+    <div class="hero-center">
+      <div class="avatar-glow-bg"></div>
+      <div class="avatar-rings">
+        <div class="aring r1"></div>
+        <div class="aring r2"></div>
+        <div class="aring r3"></div>
+      </div>
+      <div class="avatar-wrap" id="avatarWrap">
+        <img src="assets/photo.jpg" alt="Alin Alex" class="avatar-photo" id="avatarPhoto"/>
+        <canvas id="avatarCanvas" class="avatar-canvas"></canvas>
+      </div>
+      <div class="htag tag1"><i class="ri-shield-check-fill"></i> SIH'25 Finalist</div>
+      <div class="htag tag2"><i class="ri-trophy-fill"></i> 1st · Idea Pitching</div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-right">
+      <div class="hero-role-pre">An</div>
+      <div class="hero-role-scroll">
+        <div class="hero-role-track" id="heroRoleTrack">
+          <span class="r-active">BACKEND ENG</span>
+          <span>FULL-STACK DEV</span>
+          <span>AI RESEARCHER</span>
+          <span>SIH FINALIST</span>
+          <span>BACKEND ENG</span>
+          <span>FULL-STACK DEV</span>
+        </div>
+      </div>
+      <div class="hero-status-wrap">
+        <span class="status-dot"></span>
+        <span class="hero-status-txt">Open to Work</span>
+        <span class="hero-loc"><i class="ri-map-pin-line"></i> Kerala</span>
+      </div>
+      <a href="assets/resume.pdf" download class="resume-btn"><i class="ri-file-text-line"></i> RESUME</a>
+    </div>
+
+  </div>
   <div class="scroll-arrow"><i class="ri-arrow-down-line"></i></div>
 </section>
 
-<!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
-<section id="about">
-  <div class="about-wrap">
-    <!-- 3D avatar on left (shows via Three.js + sticky CSS) -->
-    <div class="about-3d-col" id="about3dWrap">
-      <div class="about-3d-glow"></div>
-    </div>
-    <div class="about-text-col reveal">
-      <div class="sec-sublabel">ABOUT ME</div>
-      <p class="about-bio">
-        I am a self-taught Backend &amp; Full-Stack Engineer from Kerala, India. I build production-grade systems, intelligent APIs, and high-performance backends. My expertise includes Go, Python, Django, Spring Boot, PostgreSQL, Docker, and AWS. Currently building concurrent distributed systems and AI-integrated applications. <strong>SIH'25 National Finalist.</strong> Code is architecture, systems are poetry.
-      </p>
-      <div class="about-chips">
-        <span><i class="ri-map-pin-2-fill"></i> Thrissur, Kerala</span>
-        <span><i class="ri-graduation-cap-fill"></i> Christ College of Engineering</span>
-        <span><i class="ri-open-source-fill"></i> FOSS Club</span>
-        <span><i class="ri-global-line"></i> IEEE WIE</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════ WHAT I DO ═══════════════════════════════════ -->
-<section id="whatido">
-  <div class="whatido-wrap">
-    <div class="whatido-left">
-      <div class="whatido-heading">WHAT I<br>DO</div>
-      <!-- second 3D scene: desk figure -->
-      <div class="whatido-3d" id="whatido3dWrap">
-        <div class="whatido-3d-glow"></div>
-      </div>
-    </div>
-    <div class="whatido-cards">
-      <div class="skill-card active">
-        <div class="sc-header">
-          <div>
-            <div class="sc-title">BACKEND ENGINEER</div>
-            <div class="sc-sub">Building scalable systems &amp; APIs</div>
-          </div>
-          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
+<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+<section id="about" class="section">
+  <div class="about-bg-text">ABOUT ME</div>
+  <div class="section-container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="sec-label">ABOUT ME</div>
+        <h2 class="sec-title">Who I Am</h2>
+        <p class="about-bio">
+          I am a self-taught Backend &amp; Full-Stack Engineer from Kerala, India. I build production-grade systems, intelligent APIs, and high-performance backends. My expertise includes Go, Python, Django, Spring Boot, PostgreSQL, Docker, and AWS. <strong>SIH'25 National Finalist.</strong> Code is architecture, systems are poetry.
+        </p>
+        <div class="about-chips">
+          <span><i class="ri-map-pin-2-fill"></i> Thrissur, Kerala</span>
+          <span><i class="ri-graduation-cap-fill"></i> Christ College of Engg</span>
+          <span><i class="ri-open-source-fill"></i> FOSS Club</span>
+          <span><i class="ri-global-line"></i> IEEE WIE</span>
         </div>
-        <div class="sc-body">
-          <p>Designing concurrent job processors, REST APIs, and microservices using Go, Django, and Spring Boot. Specializing in PostgreSQL, Redis, Docker, and AWS deployments with 5000+ jobs/min throughput.</p>
-          <div class="sc-tags"><span>Go</span><span>Django</span><span>Spring Boot</span><span>PostgreSQL</span><span>Docker</span></div>
+        <div class="about-socials">
+          <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-link"><i class="ri-github-fill"></i></a>
+          <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link"><i class="ri-linkedin-box-fill"></i></a>
+          <a href="mailto:alinalex441@gmail.com" class="soc-link"><i class="ri-mail-fill"></i></a>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="sc-header">
-          <div>
-            <div class="sc-title">FULL-STACK</div>
-            <div class="sc-sub">Modern web development &amp; scalable applications</div>
-          </div>
-          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
-        </div>
-        <div class="sc-body">
-          <p>Building responsive and performant web applications using React, Node.js, and Django. Developing real-time features with WebSockets and implementing MERN stack solutions.</p>
-          <div class="sc-tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>WebSockets</span></div>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="sc-header">
-          <div>
-            <div class="sc-title">AI / ML RESEARCH</div>
-            <div class="sc-sub">Intelligent systems &amp; data pipelines</div>
-          </div>
-          <button class="sc-toggle"><i class="ri-arrow-down-s-line"></i></button>
-        </div>
-        <div class="sc-body">
-          <p>Building AI-powered tools, satellite analysis pipelines, and intelligent automation. Working on AI R&D, developing systems that reduce hallucination by 85% and speed up query generation by 40%.</p>
-          <div class="sc-tags"><span>Python</span><span>ML</span><span>Sentinel API</span><span>Data Pipelines</span></div>
+      <div class="about-right reveal delay1">
+        <div class="about-img-wrap">
+          <img src="assets/photo.jpg" alt="Alin Alex" class="about-photo"/>
+          <div class="about-img-glow"></div>
+          <div class="about-img-border"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════ CAREER ═══════════════════════════════════ -->
+<!-- ═══════════════════════ EXPERIENCE ═══════════════════════ -->
 <section id="works" class="section">
+  <div class="career-bg-text">EXPERIENCE</div>
   <div class="section-container">
     <h2 class="career-title reveal">My career &amp;<br><span class="grad">experience</span></h2>
     <div class="timeline">
@@ -236,7 +195,7 @@
         </div>
         <div class="tl-mid">
           <div class="tl-year">NOW</div>
-          <div class="tl-dot active"></div>
+          <div class="tl-dot active"><div class="tl-pulse"></div></div>
           <div class="tl-line"></div>
         </div>
         <div class="tl-right">
@@ -299,68 +258,74 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════ PROJECTS ═══════════════════════════════════ -->
-<section id="projects" class="section">
-  <div class="section-container">
-    <h2 class="work-title reveal">My <span class="grad">Work</span></h2>
-    <div class="proj-new-grid">
+<!-- ═══════════════════════ PROJECTS (horizontal scroll) ═══════════════════════ -->
+<section id="projects" class="section hscroll-section">
+  <div class="hscroll-sticky">
+    <div class="hscroll-title-col">
+      <div class="sec-label">MY WORK</div>
+      <h2 class="hscroll-heading">My<br><span class="grad">Work</span></h2>
+      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="see-all-btn">See All Works <i class="ri-arrow-right-line"></i></a>
+    </div>
+    <div class="hscroll-track-wrap" id="hscrollWrap">
+      <div class="hscroll-track" id="hscrollTrack">
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">01</div>
-        <div class="pnc-cat">AI / Remote Sensing</div>
-        <div class="pnc-name">MineGuard</div>
-        <div class="pnc-tools">Python · Sentinel · Plotly · ML</div>
-        <div class="pnc-img"><img src="assets/proj_mineguard.png" alt="MineGuard"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">01</div>
+          <div class="phc-cat">AI / Remote Sensing</div>
+          <div class="phc-name">MineGuard</div>
+          <div class="phc-tools">Python · Sentinel · Plotly · ML</div>
+          <div class="phc-img"><img src="assets/proj_mineguard.png" alt="MineGuard"/></div>
+        </a>
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">02</div>
-        <div class="pnc-cat">Backend / Systems</div>
-        <div class="pnc-name">Concurrent Job Processor</div>
-        <div class="pnc-tools">Go · Goroutines · Channels · Redis</div>
-        <div class="pnc-img"><img src="assets/proj_jobs.png" alt="Job Processor"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">02</div>
+          <div class="phc-cat">Backend / Systems</div>
+          <div class="phc-name">Concurrent Job Processor</div>
+          <div class="phc-tools">Go · Goroutines · Channels · Redis</div>
+          <div class="phc-img"><img src="assets/proj_jobs.png" alt="Job Processor"/></div>
+        </a>
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">03</div>
-        <div class="pnc-cat">Full-Stack / Real-time</div>
-        <div class="pnc-name">FoodHub</div>
-        <div class="pnc-tools">Spring Boot · WebSockets · React</div>
-        <div class="pnc-img"><img src="assets/proj_foodhub.png" alt="FoodHub"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">03</div>
+          <div class="phc-cat">Full-Stack / Real-time</div>
+          <div class="phc-name">FoodHub</div>
+          <div class="phc-tools">Spring Boot · WebSockets · React</div>
+          <div class="phc-img"><img src="assets/proj_foodhub.png" alt="FoodHub"/></div>
+        </a>
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">04</div>
-        <div class="pnc-cat">Blockchain / MERN</div>
-        <div class="pnc-name">E-Ballot</div>
-        <div class="pnc-tools">MongoDB · React · Node · Express</div>
-        <div class="pnc-img"><img src="assets/proj_eballot.png" alt="E-Ballot"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">04</div>
+          <div class="phc-cat">Blockchain / MERN</div>
+          <div class="phc-name">E-Ballot</div>
+          <div class="phc-tools">MongoDB · React · Node · Express</div>
+          <div class="phc-img"><img src="assets/proj_eballot.png" alt="E-Ballot"/></div>
+        </a>
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">05</div>
-        <div class="pnc-cat">E-Commerce / Django</div>
-        <div class="pnc-name">Cart Shopee</div>
-        <div class="pnc-tools">Django · MySQL · JavaScript</div>
-        <div class="pnc-img"><img src="assets/proj_foodhub.png" alt="Cart Shopee"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">05</div>
+          <div class="phc-cat">E-Commerce / Django</div>
+          <div class="phc-name">Cart Shopee</div>
+          <div class="phc-tools">Django · MySQL · JavaScript</div>
+          <div class="phc-img"><img src="assets/proj_foodhub.png" alt="Cart Shopee"/></div>
+        </a>
 
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="pnc reveal">
-        <div class="pnc-num">06</div>
-        <div class="pnc-cat">Backend / REST</div>
-        <div class="pnc-name">Go E-Commerce API</div>
-        <div class="pnc-tools">Go · PostgreSQL · REST · Docker</div>
-        <div class="pnc-img"><img src="assets/proj_jobs.png" alt="Go API"/></div>
-      </a>
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="proj-h-card">
+          <div class="phc-num">06</div>
+          <div class="phc-cat">Backend / REST</div>
+          <div class="phc-name">Go E-Commerce API</div>
+          <div class="phc-tools">Go · PostgreSQL · REST · Docker</div>
+          <div class="phc-img"><img src="assets/proj_jobs.png" alt="Go API"/></div>
+        </a>
 
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════ TECH STACK ═══════════════════════════════════ -->
+<!-- ═══════════════════════ TECH STACK ═══════════════════════ -->
 <section id="techstack" class="section ts-section">
   <div class="section-container">
-    <h2 class="ts-big-title">TECH STACK</h2>
+    <h2 class="ts-big-title reveal">TECH STACK</h2>
     <div class="ts-grid">
       <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>Python</div>
       <div class="ts-pill tilt-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" alt="Go"/>Go</div>
@@ -384,48 +349,33 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════ CONTACT ═══════════════════════════════════ -->
+<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
 <section id="contact" class="section">
   <div class="section-container">
-    <div class="contact-wrap">
-      <div class="contact-left reveal">
-        <h2 class="contact-title">Let's <span class="grad">Connect.</span></h2>
-        <p>Open to full-time roles, internships, and interesting collaborations.</p>
-        <div class="contact-links">
-          <a href="mailto:alinalex441@gmail.com" class="clink"><div class="clink-icon"><i class="ri-mail-fill"></i></div><span>alinalex441@gmail.com</span></a>
-          <a href="tel:+918921363027" class="clink"><div class="clink-icon"><i class="ri-phone-fill"></i></div><span>+91 8921363027</span></a>
-        </div>
-        <div class="contact-socials">
-          <a href="https://github.com/AlinAlexMyladoor" target="_blank" class="soc-link lg"><i class="ri-github-fill"></i></a>
-          <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank" class="soc-link lg"><i class="ri-linkedin-box-fill"></i></a>
-        </div>
+    <div class="contact-ctas">
+      <a href="mailto:alinalex441@gmail.com" class="cta-pill">Hire Me <i class="ri-arrow-right-up-line"></i></a>
+    </div>
+    <div class="contact-footer-brand">ALIN ALEX</div>
+    <div class="contact-footer-cols">
+      <div class="cfc left">
+        <a href="mailto:alinalex441@gmail.com" class="cf-contact-link"><i class="ri-mail-line"></i> alinalex441@gmail.com</a>
+        <span class="cf-loc"><i class="ri-map-pin-line"></i> Kerala, India</span>
       </div>
-      <form id="cForm" class="contact-form tilt-card reveal">
-        <div class="cf-field"><i class="ri-user-line"></i><input type="text" placeholder="Your Name" required/></div>
-        <div class="cf-field"><i class="ri-mail-line"></i><input type="email" placeholder="Email Address" required/></div>
-        <div class="cf-field ta"><i class="ri-message-3-line"></i><textarea rows="4" placeholder="Your Message..."></textarea></div>
-        <button type="submit" id="fBtn" class="btn-primary full"><i class="ri-send-plane-fill"></i> Send Message</button>
-      </form>
+      <div class="cfc mid">
+        <a href="https://github.com/AlinAlexMyladoor" target="_blank">Github <i class="ri-arrow-right-up-line"></i></a>
+        <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank">LinkedIn <i class="ri-arrow-right-up-line"></i></a>
+        <a href="mailto:alinalex441@gmail.com">Email <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="cfc right">
+        <span>Designed &amp; Developed by<br>Alin Alex © 2026</span>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner section-container">
-    <span class="f-brand">AA<span class="accent-dot">.</span></span>
-    <span class="f-copy"><i class="ri-copyright-line"></i> 2026 Alin Alex · Kerala, India</span>
-    <div class="f-links">
-      <a href="https://github.com/AlinAlexMyladoor" target="_blank"><i class="ri-github-fill"></i></a>
-      <a href="https://linkedin.com/in/alin-alex-00a017332" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
-    </div>
-  </div>
-</footer>
 
 </div><!-- /mainBody -->
 
 <script src="script.js"></script>
 <script src="three3d.js"></script>
-<script src="three-whatido.js"></script>
 </body>
 </html>
