@@ -30,9 +30,10 @@ const Landing = ({ children }: PropsWithChildren) => {
           {/* Mobile photo - shows only on mobile when 3D character is hidden */}
           <div className="mobile-photo">
             <img
-              src="/images/mypicnbg.png"
+              src="/images/alin_alex.jpg"
               alt="Alin Alex"
               loading="eager"
+              // @ts-ignore - React DOM wants lowercase, TypeScript wants camelCase
               fetchpriority="high"
               decoding="async"
             />

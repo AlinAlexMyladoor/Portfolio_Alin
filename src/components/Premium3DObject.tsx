@@ -230,6 +230,7 @@ const Premium3DObject = () => {
 
   return (
     <div 
+      className="premium-3d-model"
       style={{
         position: "fixed",
         top: 0,
