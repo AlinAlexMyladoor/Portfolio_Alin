@@ -5,7 +5,8 @@
 
 /* Remove mobile photo and ensure 3D character is always hidden on mobile */
 @media only screen and (max-width: 768px) {
-  .character-model {
+  .character-model,
+  .premium-3d-model {
     display: none !important;
   }
 
@@ -103,11 +104,26 @@
 
   /* Show mobile photo */
   .mobile-photo {
-    display: none !important;
+    display: block;
+    position: relative !important;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    z-index: 1;
+    order: 2;
+    /* Second: Photo */
+    /* Add fade mask to bottom */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    pointer-events: none;
+    transform: none !important;
   }
 
   .mobile-photo img {
-    display: none !important;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 40px rgba(194, 164, 255, 0.4));
   }
 }
 
