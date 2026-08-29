@@ -6,6 +6,21 @@ import { useLoading } from "../context/LoadingProvider";
 import { setProgress } from "./Loading";
 import * as THREE from "three";
 
+// Pre-calculate random fragments so they don't jump around (refresh) on re-renders
+const fragmentsData = Array.from({ length: 15 }).map(() => ({
+  position: [
+    (Math.random() - 0.5) * 4,
+    (Math.random() - 0.5) * 4,
+    (Math.random() - 0.5) * 4
+  ] as [number, number, number],
+  rotation: [
+    Math.random() * Math.PI,
+    Math.random() * Math.PI,
+    Math.random() * Math.PI
+  ] as [number, number, number],
+  size: Math.random() * 0.08 + 0.04
+}));
+
 // The actual 3D Mesh
 const AICore = () => {
   const groupRef = useRef<THREE.Group>(null);
@@ -26,14 +41,52 @@ const AICore = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Cache nodes outside useFrame for performance
-  const nodes = useRef<{ hero: HTMLElement | null, about: HTMLElement | null, what: HTMLElement | null }>({ hero: null, about: null, what: null });
+  // Cache layout dimensions to prevent severe layout thrashing (lag) on scroll
+  const layoutCache = useRef({
+    heroCenter: 0,
+    aboutCenter: 0,
+    whatCenter: 0,
+    whatBottom: 0,
+    initialized: false
+  });
 
   useEffect(() => {
-    nodes.current = {
-      hero: document.querySelector(".landing-section"),
-      about: document.querySelector(".about-section"),
-      what: document.querySelector(".whatIDO")
+    const updateCache = () => {
+      const heroNode = document.querySelector(".landing-section") as HTMLElement;
+      const aboutNode = document.querySelector(".about-section") as HTMLElement;
+      const whatNode = document.querySelector(".whatIDO") as HTMLElement;
+      
+      if (heroNode && aboutNode && whatNode) {
+        const getAbsTop = (node: HTMLElement) => {
+          let top = 0;
+          let el: HTMLElement | null = node;
+          while (el) {
+            top += el.offsetTop;
+            el = el.offsetParent as HTMLElement;
+          }
+          return top;
+        };
+        
+        const heroTop = getAbsTop(heroNode);
+        const aboutTop = getAbsTop(aboutNode);
+        const whatTop = getAbsTop(whatNode);
+
+        layoutCache.current = {
+          heroCenter: heroTop + heroNode.offsetHeight / 2,
+          aboutCenter: aboutTop + aboutNode.offsetHeight / 2,
+          whatCenter: whatTop + whatNode.offsetHeight / 2,
+          whatBottom: whatTop + whatNode.offsetHeight,
+          initialized: true
+        };
+      }
+    };
+
+    // Delay slightly to let DOM render
+    const t = setTimeout(updateCache, 1000);
+    window.addEventListener("resize", updateCache);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", updateCache);
     };
   }, []);
 
@@ -57,27 +110,18 @@ const AICore = () => {
     }
 
     // --- SCROLL TARGETING ---
-    const { hero: heroNode, about: aboutNode, what: whatIDoNode } = nodes.current;
-
+    const cache = layoutCache.current;
+    
     let targetX = 0;
     let targetY = 0; 
     let targetScale = 1; 
 
-    if (heroNode && aboutNode && whatIDoNode) {
+    if (cache.initialized) {
       const scrollY = window.scrollY;
       const windowHalf = window.innerHeight / 2;
       const screenCenterY = scrollY + windowHalf;
 
-      const getCenter = (node: HTMLElement) => {
-        const rect = node.getBoundingClientRect();
-        return scrollY + rect.top + rect.height / 2;
-      };
-
-      const heroCenter = getCenter(heroNode);
-      const aboutCenter = getCenter(aboutNode);
-      const whatIDoCenter = getCenter(whatIDoNode);
-      
-      const whatIDoBottom = scrollY + whatIDoNode.getBoundingClientRect().bottom;
+      const { heroCenter, aboutCenter, whatCenter, whatBottom } = cache;
 
       let progressHeroToAbout = 0;
       if (screenCenterY > heroCenter && screenCenterY < aboutCenter) {
@@ -87,15 +131,15 @@ const AICore = () => {
       }
 
       let progressAboutToWhat = 0;
-      if (screenCenterY > aboutCenter && screenCenterY < whatIDoCenter) {
-        progressAboutToWhat = (screenCenterY - aboutCenter) / (whatIDoCenter - aboutCenter);
-      } else if (screenCenterY >= whatIDoCenter) {
+      if (screenCenterY > aboutCenter && screenCenterY < whatCenter) {
+        progressAboutToWhat = (screenCenterY - aboutCenter) / (whatCenter - aboutCenter);
+      } else if (screenCenterY >= whatCenter) {
         progressAboutToWhat = 1;
       }
 
       let progressPastWhatIDo = 0;
-      if (screenCenterY > whatIDoBottom) {
-        progressPastWhatIDo = Math.min((screenCenterY - whatIDoBottom) / 300, 1);
+      if (screenCenterY > whatBottom) {
+        progressPastWhatIDo = Math.min((screenCenterY - whatBottom) / 300, 1);
       }
 
       const isMobile = window.innerWidth < 768;
@@ -178,17 +222,13 @@ const AICore = () => {
 
         {/* Floating Fragments */}
         <group ref={fragmentsRef}>
-          {[...Array(15)].map((_, i) => (
+          {fragmentsData.map((data, i) => (
             <mesh 
               key={i} 
-              position={[
-                (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 4,
-                (Math.random() - 0.5) * 4
-              ]}
-              rotation={[Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI]}
+              position={data.position}
+              rotation={data.rotation}
             >
-              <octahedronGeometry args={[Math.random() * 0.08 + 0.04, 0]} />
+              <octahedronGeometry args={[data.size, 0]} />
               <MeshTransmissionMaterial 
                 thickness={1} 
                 roughness={0.05} 
