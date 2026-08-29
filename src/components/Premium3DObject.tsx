@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { MeshTransmissionMaterial, Float, Sparkles, Environment } from "@react-three/drei";
+import { MeshTransmissionMaterial, Float, Environment } from "@react-three/drei";
 import { useLocation } from "react-router-dom";
 import { useLoading } from "../context/LoadingProvider";
 import { setProgress } from "./Loading";
@@ -9,7 +9,6 @@ import * as THREE from "three";
 // The actual 3D Mesh
 const AICore = () => {
   const groupRef = useRef<THREE.Group>(null);
-  const meshRef = useRef<THREE.Group>(null);
   const ringsRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
   const fragmentsRef = useRef<THREE.Group>(null);
