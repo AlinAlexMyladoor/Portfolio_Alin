@@ -11,13 +11,11 @@ const Landing = ({ children }: PropsWithChildren) => {
     <>
       <div className="landing-section" id="landingDiv">
         <div className="landing-container">
-          <div className="landing-intro">
+          <div className="landing-intro" style={{ minWidth: "max-content" }}>
             <h2>Hello! I'm</h2>
-            <h1>
+            <h1 className="whitespace-nowrap" style={{ whiteSpace: "nowrap" }}>
               {firstName.toUpperCase()}
-              {' '}
-              <br />
-              {lastName && <span>{lastName.toUpperCase()}</span>}
+              {lastName && <span> {lastName.toUpperCase()}</span>}
             </h1>
           </div>
           <div className="landing-info">
@@ -26,7 +24,7 @@ const Landing = ({ children }: PropsWithChildren) => {
               <div className="landing-h2-1">AI-DRIVEN</div>
             </h2>
             <h2>
-              <div className="landing-h2-info">Full-Stack Developer</div>
+              <div className="landing-h2-info">FULL-STACK DEVELOPER</div>
             </h2>
           </div>
           {/* Mobile photo - shows only on mobile when 3D character is hidden */}

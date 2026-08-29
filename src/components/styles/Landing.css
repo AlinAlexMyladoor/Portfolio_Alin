@@ -89,39 +89,6 @@
     /* Hide 'An' if not needed, or keep it static */
   }
 
-  /* Force static positioning to prevent overlaps */
-  .landing-info h2,
-  h2.landing-info-h2,
-  .landing-h2-1,
-  .landing-h2-info {
-    position: static !important;
-    display: block;
-    width: auto;
-    margin: 0 !important;
-    font-size: 20px !important;
-    line-height: 1.5 !important;
-    white-space: normal;
-    text-align: center;
-    height: auto !important;
-    transform: none !important;
-    /* Remove any transforms */
-  }
-
-  /* Specific styling for the distinct parts */
-  .landing-h2-1 {
-    font-size: 24px !important;
-    color: var(--accentColor);
-    font-weight: 700;
-  }
-
-  .landing-h2-info {
-    font-size: 18px !important;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .landing-info-h2::after {
-    display: none;
-  }
 
   /* Show mobile photo */
   .mobile-photo {
@@ -377,16 +344,17 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   white-space: nowrap;
+  z-index: 5;
 }
 
 .landing-h2-info {
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 .landing-h2-info-1 {
   position: absolute;
   top: 0;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 h2.landing-info-h2 {
@@ -417,6 +385,7 @@ h2.landing-info-h2 {
       rgba(0, 0, 0, 0) 110%);
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 @media screen and (min-width: 500px) {

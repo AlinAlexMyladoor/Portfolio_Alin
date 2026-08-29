@@ -34,7 +34,8 @@ h6 {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Allow scrolling on mobile */
@@ -117,14 +118,14 @@ body {
 }
 
 .split-line {
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 .split-h2 {
-  overflow: hidden;
+  overflow: visible !important;
   display: flex;
-  white-space: nowrap;
-  flex-wrap: nowrap;
+  white-space: normal;
+  flex-wrap: wrap;
 }
 
 .techstack {

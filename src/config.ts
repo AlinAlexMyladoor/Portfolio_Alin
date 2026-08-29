@@ -23,7 +23,7 @@ export const config = {
         },
         {
             position: "Software Development Intern",
-            company: "Whitematrix",
+            company: "White Matrix",
             period: "2026",
             description: "Contributed to the MOSIP integration project (VeriCred Campus), working on secure digital academic credentials and identity verification workflows."
         },
