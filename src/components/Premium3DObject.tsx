@@ -196,14 +196,12 @@ const AICore = () => {
         <group ref={ringsRef}>
           {/* Thick Main Glass Ring */}
           <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-            <torusGeometry args={[1.1, 0.2, 64, 128]} />
-            <MeshTransmissionMaterial 
-              backside 
+            <torusGeometry args={[1.1, 0.2, 32, 64]} />
+            <meshPhysicalMaterial 
               thickness={2} 
               roughness={0.02} 
               transmission={1} 
               ior={1.5} 
-              chromaticAberration={0.2} 
               color="#4a0080"
               clearcoat={1}
             />
@@ -212,11 +210,11 @@ const AICore = () => {
           {/* Thin Intersecting Glass Rings */}
           <mesh rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
             <torusGeometry args={[1.3, 0.02, 32, 100]} />
-            <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" />
+            <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" />
           </mesh>
           <mesh rotation={[-Math.PI / 4, 0, Math.PI / 3]}>
             <torusGeometry args={[1.4, 0.015, 32, 100]} />
-            <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" />
+            <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" />
           </mesh>
         </group>
 
@@ -229,13 +227,12 @@ const AICore = () => {
               rotation={data.rotation}
             >
               <octahedronGeometry args={[data.size, 0]} />
-              <MeshTransmissionMaterial 
+              <meshPhysicalMaterial 
                 thickness={1} 
                 roughness={0.05} 
                 transmission={1} 
                 ior={1.5}
                 color="#df99ff"
-                chromaticAberration={0.1}
               />
             </mesh>
           ))}
@@ -280,7 +277,7 @@ const Premium3DObject = () => {
         pointerEvents: "none" // Extremely important: never block existing UI interactions
       }}
     >
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={1} frameloop="always">
         <ambientLight intensity={0.5} />
         <Environment preset="city" />
         <AICore />
