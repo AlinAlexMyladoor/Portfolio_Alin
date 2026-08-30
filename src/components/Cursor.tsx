@@ -7,6 +7,10 @@ const Cursor = () => {
   useEffect(() => {
     let hover = false;
     const cursor = cursorRef.current!;
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches || window.innerWidth < 768) {
+      if (cursor) cursor.style.display = "none";
+      return;
+    }
     const mousePos = { x: 0, y: 0 };
     const cursorPos = { x: 0, y: 0 };
     document.addEventListener("mousemove", (e) => {

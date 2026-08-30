@@ -28,6 +28,7 @@ const AICore = () => {
   const coreRef = useRef<THREE.Mesh>(null);
   const fragmentsRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
+  const isMobile = window.innerWidth < 768;
 
   // Mouse tracking
   const mouse = useRef({ x: 0, y: 0 });
@@ -207,20 +208,25 @@ const AICore = () => {
             />
           </mesh>
           
-          {/* Thin Intersecting Glass Rings */}
-          <mesh rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
-            <torusGeometry args={[1.3, 0.02, 32, 100]} />
-            <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" />
-          </mesh>
-          <mesh rotation={[-Math.PI / 4, 0, Math.PI / 3]}>
-            <torusGeometry args={[1.4, 0.015, 32, 100]} />
-            <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" />
-          </mesh>
+          {/* Thin Intersecting Glass Rings - Hidden on mobile */}
+          {!isMobile && (
+            <>
+              <mesh rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
+                <torusGeometry args={[1.3, 0.02, 32, 100]} />
+                <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" />
+              </mesh>
+              <mesh rotation={[-Math.PI / 4, 0, Math.PI / 3]}>
+                <torusGeometry args={[1.4, 0.015, 32, 100]} />
+                <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" />
+              </mesh>
+            </>
+          )}
         </group>
 
-        {/* Floating Fragments */}
-        <group ref={fragmentsRef}>
-          {fragmentsData.map((data, i) => (
+        {/* Floating Fragments - Hidden on mobile */}
+        {!isMobile && (
+          <group ref={fragmentsRef}>
+            {fragmentsData.map((data, i) => (
             <mesh 
               key={i} 
               position={data.position}
@@ -237,6 +243,7 @@ const AICore = () => {
             </mesh>
           ))}
         </group>
+        )}
       </group>
     </Float>
   );
