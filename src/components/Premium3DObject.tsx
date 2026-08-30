@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Float, Environment } from "@react-three/drei";
+import { MeshTransmissionMaterial, Float, Environment } from "@react-three/drei";
 import { useLocation } from "react-router-dom";
 import { useLoading } from "../context/LoadingProvider";
 import { setProgress } from "./Loading";
@@ -198,13 +198,17 @@ const AICore = () => {
           {/* Thick Main Glass Ring */}
           <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
             <torusGeometry args={[1.1, 0.2, 32, 64]} />
-            <meshPhysicalMaterial 
+            <MeshTransmissionMaterial 
+              backside 
               thickness={2} 
               roughness={0.02} 
               transmission={1} 
               ior={1.5} 
+              chromaticAberration={0.2} 
               color="#4a0080"
               clearcoat={1}
+              resolution={256} // Performance fix for heating
+              samples={4}      // Performance fix for heating
             />
           </mesh>
           
@@ -213,11 +217,11 @@ const AICore = () => {
             <>
               <mesh rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
                 <torusGeometry args={[1.3, 0.02, 32, 100]} />
-                <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" />
+                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" resolution={128} samples={2} />
               </mesh>
               <mesh rotation={[-Math.PI / 4, 0, Math.PI / 3]}>
                 <torusGeometry args={[1.4, 0.015, 32, 100]} />
-                <meshPhysicalMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" />
+                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" resolution={128} samples={2} />
               </mesh>
             </>
           )}
@@ -233,12 +237,15 @@ const AICore = () => {
               rotation={data.rotation}
             >
               <octahedronGeometry args={[data.size, 0]} />
-              <meshPhysicalMaterial 
+              <MeshTransmissionMaterial 
                 thickness={1} 
                 roughness={0.05} 
                 transmission={1} 
                 ior={1.5}
                 color="#df99ff"
+                chromaticAberration={0.1}
+                resolution={64} // Performance fix for fragments
+                samples={2}
               />
             </mesh>
           ))}
