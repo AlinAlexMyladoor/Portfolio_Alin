@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { MeshTransmissionMaterial, Float, Environment } from "@react-three/drei";
+import { Float, Environment } from "@react-three/drei";
 import { useLocation } from "react-router-dom";
 import { useLoading } from "../context/LoadingProvider";
 import { setProgress } from "./Loading";
