@@ -118,9 +118,7 @@ const AICore = () => {
       fragmentsRef.current.rotation.z += delta * 0.05;
     }
 
-    // Keep the canvas alive for idle animations
-    invalidate();
-
+    // We will conditionally call invalidate() at the end of the frame instead
     // --- SCROLL TARGETING ---
     const cache = layoutCache.current;
     
@@ -191,6 +189,14 @@ const AICore = () => {
 
     groupRef.current.rotation.x = THREE.MathUtils.damp(groupRef.current.rotation.x, targetRotX + Math.sin(state.clock.elapsedTime * 0.5) * 0.1, 2, delta);
     groupRef.current.rotation.y = THREE.MathUtils.damp(groupRef.current.rotation.y, targetRotY, 2, delta);
+
+    // CRITICAL PERF FIX: Stop rendering if the object is effectively invisible (scaled down to 0)
+    if (currentScale < 0.005 && targetScale === 0) {
+      groupRef.current.visible = false;
+    } else {
+      groupRef.current.visible = true;
+      invalidate(); // Only render frames if the object is actually visible
+    }
   });
 
   return (
