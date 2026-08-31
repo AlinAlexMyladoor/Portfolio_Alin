@@ -31,12 +31,14 @@ const Navbar = () => {
     // Start paused
     lenis.stop();
 
-    // Handle smooth scroll animation frame
-    function raf(time: number) {
-      lenis?.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Synchronize Lenis and GSAP ScrollTrigger to prevent scroll jitter/jerking
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis?.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
 
     // Handle navigation links
     let links = document.querySelectorAll(".header ul a");
