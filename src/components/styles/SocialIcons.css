@@ -6,6 +6,7 @@
   z-index: 99;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none; /* Allow clicks to pass through to elements below */
 }
 .social-icons {
   position: absolute;
@@ -16,6 +17,7 @@
   gap: 8px;
   z-index: 999;
   padding: 10px;
+  pointer-events: auto; /* Re-enable clicks on the actual icons */
 }
 .social-icons:hover {
   transition: 0.3s;
@@ -61,6 +63,7 @@
   transition: 0.5s;
   transform-origin: left bottom;
   transform: translateX(100%) rotateZ(-90deg);
+  pointer-events: auto; /* Re-enable clicks on resume button */
 }
 .resume-button:hover {
   color: #fff;
