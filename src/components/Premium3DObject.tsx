@@ -301,6 +301,7 @@ const Premium3DObject = () => {
       }}
     >
       <Canvas 
+        style={{ pointerEvents: "none" }}
         camera={{ position: [0, 0, 5], fov: 45 }} 
         dpr={[0.8, 1]}          // Adaptive: cap at 1x, allow down to 0.8x
         frameloop="demand"      // Only render when invalidate() is called — no idle GPU burn
