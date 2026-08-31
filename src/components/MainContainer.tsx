@@ -23,9 +23,13 @@ const MainContainer = () => {
     }, 500); // Give the DOM a tiny bit to render before animating
     const resizeHandler = () => {
       setSplitText();
-      setAllTimeline();
+      // DO NOT call setAllTimeline() here! GSAP handles resizing automatically.
+      // Creating new timelines on resize causes hundreds of overlapping animations to fight each other, causing massive scroll jerking.
     };
-    resizeHandler();
+    
+    // Initial setup
+    setSplitText();
+    
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
