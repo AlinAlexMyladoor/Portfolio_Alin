@@ -57,19 +57,30 @@ const Work = () => {
       ScrollTrigger.getById("work")?.kill();
     };
   }, []);
+
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <h2>
-          My <span>Work</span>
-        </h2>
+        <div className="work-heading-row">
+          <h2>
+            My <span>Work</span>
+          </h2>
+          {/* See All Works is here — outside the GSAP carousel, always visible,
+              never inside a transformed/pinned container. Works on all browsers. */}
+          <a
+            href="/myworks"
+            className="see-all-btn-header"
+            onClick={() => { window.location.href = "/myworks"; }}
+          >
+            See All Works →
+          </a>
+        </div>
         <div className="work-flex">
           {config.projects.slice(0, 5).map((project, index) => (
             <div className="work-box" key={project.id}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>0{index + 1}</h3>
-
                   <div>
                     <h4>{project.title}</h4>
                     <p>{project.category}</p>
@@ -81,26 +92,6 @@ const Work = () => {
               <WorkImage image={project.image} alt={project.title} link={project.link} />
             </div>
           ))}
-          {/* See All Works Button — using plain <a> instead of React Router Link
-              because Mac Safari doesn't fire React Router's click handler inside
-              a GSAP-pinned + CSS-transformed container. */}
-          <div className="work-box work-box-cta">
-            <div className="see-all-works">
-              <h3>Want to see more?</h3>
-              <p>Explore all of my projects and creations</p>
-              <a
-                href="/myworks"
-                className="see-all-btn"
-                data-cursor="disable"
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent GSAP ScrollTrigger from swallowing the event
-                  window.location.href = "/myworks";
-                }}
-              >
-                See All Works →
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
