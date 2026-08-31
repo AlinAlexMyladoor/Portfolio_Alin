@@ -37,7 +37,11 @@ const AICore = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      invalidate(); // Only re-render when mouse moves
+      
+      // ONLY wake up the 3D renderer if the model is actually on screen!
+      if (!layoutCache.current.initialized || window.scrollY < layoutCache.current.whatBottom + 200) {
+        invalidate(); 
+      }
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -45,7 +49,11 @@ const AICore = () => {
 
   // Invalidate on scroll so the 3D object moves with scroll
   useEffect(() => {
-    const handleScroll = () => invalidate();
+    const handleScroll = () => {
+      if (!layoutCache.current.initialized || window.scrollY < layoutCache.current.whatBottom + 200) {
+        invalidate();
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [invalidate]);
