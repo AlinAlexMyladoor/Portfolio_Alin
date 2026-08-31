@@ -192,12 +192,18 @@
   transform: translateX(-50%);
   top: 0;
   color: var(--backgroundColor);
+  pointer-events: none; /* Never block clicks underneath */
 }
 .loader-title {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.2px;
+  pointer-events: auto; /* Clickable during loading */
 }
+.loaderGame {
+  pointer-events: auto; /* Clickable during loading */
+}
+
 @keyframes blink {
   0% {
     opacity: 0;

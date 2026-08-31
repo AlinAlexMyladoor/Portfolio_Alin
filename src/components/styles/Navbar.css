@@ -11,6 +11,14 @@
   transform: translateX(-50%);
   top: 0;
   z-index: 9999;
+  pointer-events: none; /* Pass clicks through empty header space */
+}
+.header > *,
+.header ul,
+.header ul li,
+.header ul li a,
+.header a {
+  pointer-events: auto; /* Re-enable clicks on actual nav items */
 }
 .header ul {
   font-size: 11px;
