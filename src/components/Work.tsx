@@ -37,6 +37,7 @@ const Work = () => {
         end: `+=${translateX}`,
         scrub: 1,
         pin: true,
+        pinType: "transform",
         pinSpacing: true,
         anticipatePin: 1,
         id: "work",
