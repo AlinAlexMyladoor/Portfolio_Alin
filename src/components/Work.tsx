@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import { config } from "../config";
-import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,14 +81,24 @@ const Work = () => {
               <WorkImage image={project.image} alt={project.title} link={project.link} />
             </div>
           ))}
-          {/* See All Works Button */}
+          {/* See All Works Button — using plain <a> instead of React Router Link
+              because Mac Safari doesn't fire React Router's click handler inside
+              a GSAP-pinned + CSS-transformed container. */}
           <div className="work-box work-box-cta">
             <div className="see-all-works">
               <h3>Want to see more?</h3>
               <p>Explore all of my projects and creations</p>
-              <Link to="/myworks" className="see-all-btn" data-cursor="disable">
+              <a
+                href="/myworks"
+                className="see-all-btn"
+                data-cursor="disable"
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent GSAP ScrollTrigger from swallowing the event
+                  window.location.href = "/myworks";
+                }}
+              >
                 See All Works →
-              </Link>
+              </a>
             </div>
           </div>
         </div>
