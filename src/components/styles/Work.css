@@ -284,6 +284,12 @@
   text-decoration: none;
   transition: all 0.3s ease;
   margin-top: 10px;
+  /* Explicit fix for Mac Safari click detection */
+  cursor: pointer;
+  user-select: auto;
+  -webkit-user-select: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .see-all-btn:hover {

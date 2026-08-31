@@ -20,6 +20,17 @@ const Navbar = () => {
       wheelMultiplier: 1.7,
       touchMultiplier: 2,
       infinite: false,
+      // Prevent Lenis from capturing events on interactive elements (fixes Mac Safari click issues)
+      prevent: (node: Element) => {
+        return (
+          node.tagName === "A" ||
+          node.tagName === "BUTTON" ||
+          node.tagName === "INPUT" ||
+          node.tagName === "SELECT" ||
+          node.tagName === "TEXTAREA" ||
+          (node as HTMLElement).contentEditable === "true"
+        );
+      },
     });
 
     // Start paused
