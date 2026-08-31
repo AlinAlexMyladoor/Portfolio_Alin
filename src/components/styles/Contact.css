@@ -134,6 +134,7 @@ a.contact-social {
     padding-bottom: 50px;
   }
   .contact-container {
-    width: calc(100% - 25px);
+    width: var(--cWidth);
+    margin: auto;
   }
 }

@@ -439,14 +439,13 @@
 
 @media only screen and (max-width: 550px) {
   .whatIDO {
-    place-items: inherit;
-    align-items: start;
-    justify-content: left;
+    /* Keep default center alignment */
   }
 
   .what-box {
-    max-width: calc(100% - 25px);
-    margin: 0;
+    width: var(--cWidth);
+    max-width: 100%;
+    margin: auto;
   }
 }
 

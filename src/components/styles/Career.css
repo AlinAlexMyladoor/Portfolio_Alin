@@ -235,7 +235,7 @@
   .career-info-box p,
   .career-desc-list {
     width: 100%;
-    padding-left: 10%;
+    padding-left: 30px;
     box-sizing: border-box;
   }
 
@@ -244,7 +244,8 @@
   }
 
   .career-container {
-    width: calc(100% - 25px);
+    width: var(--cWidth);
+    margin: auto;
   }
 }
 
@@ -271,15 +272,11 @@
   .career-info-in,
   .career-info-box p,
   .career-desc-list {
-    padding-left: 5%;
+    padding-left: 30px;
   }
 
   .career-section {
     padding-top: 90px;
     margin-top: 0px;
-
-    align-items: start;
-    place-items: inherit;
-    justify-content: left;
   }
 }
