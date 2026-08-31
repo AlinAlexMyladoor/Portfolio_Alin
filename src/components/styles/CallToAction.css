@@ -32,13 +32,15 @@
   z-index: 2;
 }
 
-.cta-btn-play {
+.cta-btn-play,
+.cta-btn-works {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.cta-btn-play:hover {
+.cta-btn-play:hover,
+.cta-btn-works:hover {
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
