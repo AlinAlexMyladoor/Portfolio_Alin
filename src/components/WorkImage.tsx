@@ -33,9 +33,11 @@ const WorkImage = (props: Props) => {
             href={props.link}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setIsVideo(false)}
+            onPointerDown={() => { window.open(props.link, "_blank"); }}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor={"disable"}
+            style={{ cursor: "pointer" }}
           >
             <div className="work-link">
               <MdArrowOutward />
@@ -49,7 +51,9 @@ const WorkImage = (props: Props) => {
             to={props.link}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setIsVideo(false)}
+            onPointerDown={() => { window.location.href = props.link!; }}
             data-cursor={"disable"}
+            style={{ cursor: "pointer" }}
           >
             <div className="work-link">
               <MdArrowOutward />
