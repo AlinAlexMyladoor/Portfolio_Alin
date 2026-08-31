@@ -27,7 +27,7 @@ const AICore = () => {
   const ringsRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
   const fragmentsRef = useRef<THREE.Group>(null);
-  const { viewport } = useThree();
+  const { viewport, invalidate } = useThree();
   const isMobile = window.innerWidth < 768;
 
   // Mouse tracking
@@ -37,10 +37,18 @@ const AICore = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      invalidate(); // Only re-render when mouse moves
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [invalidate]);
+
+  // Invalidate on scroll so the 3D object moves with scroll
+  useEffect(() => {
+    const handleScroll = () => invalidate();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [invalidate]);
 
   // Cache layout dimensions to prevent severe layout thrashing (lag) on scroll
   const layoutCache = useRef({
@@ -109,6 +117,9 @@ const AICore = () => {
       fragmentsRef.current.rotation.y += delta * 0.1;
       fragmentsRef.current.rotation.z += delta * 0.05;
     }
+
+    // Keep the canvas alive for idle animations
+    invalidate();
 
     // --- SCROLL TARGETING ---
     const cache = layoutCache.current;
@@ -195,20 +206,19 @@ const AICore = () => {
 
         {/* Orbital Glass Rings */}
         <group ref={ringsRef}>
-          {/* Thick Main Glass Ring */}
+          {/* Thick Main Glass Ring — heavily optimized */}
           <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-            <torusGeometry args={[1.1, 0.2, 32, 64]} />
+            <torusGeometry args={[1.1, 0.2, 16, 48]} />
             <MeshTransmissionMaterial 
               backside 
               thickness={2} 
-              roughness={0.02} 
+              roughness={0.05} 
               transmission={1} 
               ior={1.5} 
-              chromaticAberration={0.2} 
               color="#4a0080"
-              clearcoat={1}
-              resolution={256} // Performance fix for heating
-              samples={4}      // Performance fix for heating
+              clearcoat={0}
+              resolution={128}  // Reduced: was 256
+              samples={2}       // Reduced: was 4
             />
           </mesh>
           
@@ -216,21 +226,21 @@ const AICore = () => {
           {!isMobile && (
             <>
               <mesh rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
-                <torusGeometry args={[1.3, 0.02, 32, 100]} />
-                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" resolution={128} samples={2} />
+                <torusGeometry args={[1.3, 0.02, 16, 64]} />
+                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#df99ff" resolution={64} samples={1} />
               </mesh>
               <mesh rotation={[-Math.PI / 4, 0, Math.PI / 3]}>
-                <torusGeometry args={[1.4, 0.015, 32, 100]} />
-                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" resolution={128} samples={2} />
+                <torusGeometry args={[1.4, 0.015, 16, 64]} />
+                <MeshTransmissionMaterial thickness={0.5} roughness={0.05} transmission={1} ior={1.4} color="#ff66ff" resolution={64} samples={1} />
               </mesh>
             </>
           )}
         </group>
 
-        {/* Floating Fragments - Hidden on mobile */}
+        {/* Floating Fragments - Hidden on mobile, limited count on desktop */}
         {!isMobile && (
           <group ref={fragmentsRef}>
-            {fragmentsData.map((data, i) => (
+            {fragmentsData.slice(0, 8).map((data, i) => (  // Reduced: was 15, now 8
             <mesh 
               key={i} 
               position={data.position}
@@ -243,9 +253,8 @@ const AICore = () => {
                 transmission={1} 
                 ior={1.5}
                 color="#df99ff"
-                chromaticAberration={0.1}
-                resolution={64} // Performance fix for fragments
-                samples={2}
+                resolution={32}  // Reduced: was 64
+                samples={1}      // Reduced: was 2
               />
             </mesh>
           ))}
@@ -291,7 +300,16 @@ const Premium3DObject = () => {
         pointerEvents: "none" // Extremely important: never block existing UI interactions
       }}
     >
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={1} frameloop="always">
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 45 }} 
+        dpr={[0.8, 1]}          // Adaptive: cap at 1x, allow down to 0.8x
+        frameloop="demand"      // Only render when invalidate() is called — no idle GPU burn
+        performance={{ min: 0.5 }} // Allow Three.js to drop DPR if FPS falls
+        gl={{ 
+          antialias: false,     // Disable MSAA — huge perf win with little visual diff
+          powerPreference: "low-power" // Tell GPU to prefer battery/cool over performance
+        }}
+      >
         <ambientLight intensity={0.5} />
         <Environment preset="city" />
         <AICore />

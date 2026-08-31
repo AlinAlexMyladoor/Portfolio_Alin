@@ -10,6 +10,12 @@
     display: none !important;
   }
 
+  /* Hide decorative blur circles on mobile — they waste GPU and can block taps */
+  .landing-circle1,
+  .landing-circle2 {
+    display: none !important;
+  }
+
   .landing-section,
   .landing-container {
     height: 100vh !important;
@@ -140,6 +146,7 @@
   filter: blur(60px);
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
+  pointer-events: none; /* Never block clicks */
 }
 
 .nav-fade {
@@ -180,6 +187,7 @@
   filter: blur(50px);
   border-radius: 50%;
   animation: loadingCircle2 5s linear infinite;
+  pointer-events: none; /* Never block clicks */
 }
 
 @keyframes loadingCircle2 {
